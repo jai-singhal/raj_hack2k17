@@ -22,7 +22,12 @@ def anonymous_tip(request):
 
     return render(request,'anonymous/tip.html',{'form':form})
 
+def get_interact_anonymous(request):
+    user = request.user
+    print(user.anonymous_tip_)
 
+
+    return render(request, "", {})
 
 def anonymous_user_login(request):
     form = AnonymousUsersLoginForm(request.POST or None)
@@ -31,12 +36,10 @@ def anonymous_user_login(request):
         password = form.cleaned_data.get("password")
         upload_evidence = form.cleaned_data.get("upload_evidence")
         user = authenticate(username=username, password=password)
-
         login(request, user)
-        if(upload_evidence):
-            return redirect("/anonymous/dashboard")
-        else:
-            return redirect("/evidence/upload")
+
+        return redirect("/anonymous/dashboard")
+
     return render(request, "anonymous/login.html", {"form": form})
 
 
@@ -66,18 +69,21 @@ def gen_uname_pass():
 def upload_evidence(request):
     form = EvidenceForm(request.POST or None, request.FILES or None)
     if form.is_valid():
-        form.save()
+        instance = form.save(commit = False)
         stay_in_touch = form.cleaned_data.get("stay_in_touch")
         if stay_in_touch:
             username, password = gen_uname_pass()
             new_user = AnonymousUser.objects.create(username = username, password = password)
             authenticate(new_user)
+            instance.userid = new_user
+            instance.save()
             context = {
                 "username" : username,
                 "password": password
             }
             return render(request, "anonymous/get_cred.html", context)
         else:
+            instance.save()
             return redirect("/")
     else:
         print("form invalid")

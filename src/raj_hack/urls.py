@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'comment/ajax/create', CreateComment, name = "create_comment"),
     url(r'comment/', CommentPage, name = "comment"),
     url(r'^criminal_directory/', criminal_directory, name = "criminal_directory"),
-    url(r'^evidence/upload', upload_evidence, name = "evidence_upload"),
+    url(r'evidence/upload', upload_evidence, name = "evidence_upload"),
     url(r'^$', HomePage, name = "HomePage")
 
 ]
