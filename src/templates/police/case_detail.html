@@ -15,19 +15,10 @@
 
       <div class="page-title">
         <div class="title_left">
-          <h3>Inbox Design <small>Some examples to get you started</small></h3>
+          <h3>CASE {{ my_object.id }} Details</small></h3>
         </div>
 
-        <div class="title_right">
-          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div>
+        
       </div>
 
       <div class="clearfix"></div>
@@ -35,7 +26,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="x_panel">
-            <div class="x_title">
+            <!-- <div class="x_title">
               <h2>Inbox Design<small>User Mail</small></h2>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -53,99 +44,78 @@
                 </li>
               </ul>
               <div class="clearfix"></div>
-            </div>
+            </div> -->
             <div class="x_content">
               <div class="row">
                 <div class="col-sm-3 mail_list_column">
-                  <button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
+                <hr>
                   <a href="#">
                     <div class="mail_list">
                       <div class="left">
-                        <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
+                        <i class="fa fa-circle"></i> <i class=""></i>
                       </div>
                       <div class="right">
-                        <h3>Dennis Mugo <small>3.00 PM</small></h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
+                        
+                        <h3>Filed From Location </h3>
+                        <p>{{ my_object.reg_from_loc }}</p>
                       </div>
                     </div>
                   </a>
-                  <a href="#">
-                    <div class="mail_list">
-                      <div class="left">
-                        <i class="fa fa-star"></i>
-                      </div>
-                      <div class="right">
-                        <h3>Jane Nobert <small>4.09 PM</small></h3>
-                        <p><span class="badge">To</span> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div class="mail_list">
-                      <div class="left">
-                        <i class="fa fa-circle-o"></i><i class="fa fa-paperclip"></i>
-                      </div>
-                      <div class="right">
-                        <h3>Musimbi Anne <small>4.09 PM</small></h3>
-                        <p><span class="badge">CC</span> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div class="mail_list">
-                      <div class="left">
-                        <i class="fa fa-paperclip"></i>
-                      </div>
-                      <div class="right">
-                        <h3>Jon Dibbs <small>4.09 PM</small></h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div class="mail_list">
-                      <div class="left">
-                        .
-                      </div>
-                      <div class="right">
-                        <h3>Debbis & Raymond <small>4.09 PM</small></h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div class="mail_list">
-                      <div class="left">
-                        .
-                      </div>
-                      <div class="right">
-                        <h3>Debbis & Raymond <small>4.09 PM</small></h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div class="mail_list">
-                      <div class="left">
-                        <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
-                      </div>
-                      <div class="right">
-                        <h3>Dennis Mugo <small>3.00 PM</small></h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                      </div>
-                    </div>
-                  </a>
+                 <hr>
                   <a href="#">
                     <div class="mail_list">
                       <div class="left">
                         <i class="fa fa-star"></i>
                       </div>
                       <div class="right">
-                        <h3>Jane Nobert <small>4.09 PM</small></h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
+                        <h3>Filed By</h3>
+                         <ul>
+                        <li><p><span class="badge">Name :</span> {{my_object.userid.get_full_name}}</p> </li>
+                          <li><p><span class="badge">DOB :</span> {{ my_object.userid.birth_date }}</p> </li>
+
+                        <li><p><span class="badge">Email :</span> {{ my_object.userid.email }}</p> </li>
+                        <li><p><span class="badge">Contact :</span> {{ my_object.userid.contact }}</p> </li>
+                        
+                        <li><p><span class="badge">Aadhaar Id :</span> {{ my_object.userid.aadhar }}</p> </li>
+<li><p><span class="badge">Bamashah Id :</span> {{ my_object.userid.bhamshah }}</p> </li>                          
+                        <li><p><span class="badge">Last Active :</span> {{ my_object.userid.last_login }}</p> </li>
+                          
+                         </ul>
+                      </div>
+                       <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i><a href="{{my_object.userid.get_absolute_url }}">Get Full Details</a></button>
+
+                     
+                    </div>
+                  </a>
+                  <hr>
+                  <a href="#">
+                    <div class="mail_list">
+                      <div class="left">
+                        <i class="fa fa-circle-o"></i><i class=""></i>
+                      </div>
+                      <div class="right">
+                        <h3>Associated Witnesses </h3>
+                       
+                        {% for obj in wqset %}
+                       <hr>
+                               <ul>
+                        <li><p><span class="badge">Name :</span> {{obj.name}}</p> </li>
+                          <li><p><span class="badge">Aadhar Id :</span> {{ obj.adhaar_id }}</p> </li>
+                                       <li><p><span class="badge">Bahmashah Id :</span> {{ obj.bahmashah_id }}</p> </li>
+
+                        <li><p><span class="badge">Contact :</span> {{obj.contact }}</p> </li>
+                    </ul>
+
+                      <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i><a href="{{ obj.get_absolute_url }}">Get Full Details</a></button>
+
+                     
+
+                        {% endfor %}
+
                       </div>
                     </div>
                   </a>
+                  
                 </div>
                 <!-- /MAIL LIST -->
 
@@ -155,20 +125,19 @@
                     <div class="mail_heading row">
                       <div class="col-md-8">
                         <div class="btn-group">
-                          <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
-                          <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>
-                          <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print"></i></button>
-                          <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>
+                          <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-check"></i> Approve</button>
+                          <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Comment"><i class="fa fa-comments-o"></i></button>
+                          
                         </div>
                       </div>
                       <div class="col-md-4 text-right">
-                        <p class="date"> 8:02 PM 12 FEB 2014</p>
+                        <p class="date"> {{ my_object.timestamp }}</p>
                       </div>
                       <div class="col-md-12">
-                        <h4> Donec vitae leo at sem lobortis porttitor eu consequat risus. Mauris sed congue orci. Donec ultrices faucibus rutrum.</h4>
+                        <h4> {{ my_object.title }}</h4>
                       </div>
                     </div>
-                    <div class="sender-info">
+                    <!-- <div class="sender-info">
                       <div class="row">
                         <div class="col-md-12">
                           <strong>Jon Doe</strong>
@@ -177,18 +146,14 @@
                           <a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="view-mail">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <p>Riusmod tempor incididunt ut labor erem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                        mollit anim id est laborum.</p>
-                      <p>Modesed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      <p>{{ my_object.description }}</p>
+                    <hr>
                     </div>
                     <div class="attachment">
                       <p>
+                        Evidences <hr>
                         <span><i class="fa fa-paperclip"></i> 3 attachments — </span>
                         <a href="#">Download all attachments</a> |
                         <a href="#">View all images</a>
@@ -244,12 +209,12 @@
 
                       </ul>
                     </div>
-                    <div class="btn-group">
+                 <!--    <div class="btn-group">
                       <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
                       <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>
                       <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print"></i></button>
                       <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>
-                    </div>
+                    </div> -->
                   </div>
 
                 </div>
