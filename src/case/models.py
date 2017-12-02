@@ -29,7 +29,7 @@ class CyberCaseCategories(models.Model):
 
 
 class Evidence(models.Model):
-    case = models.ForeignKey('Case')
+    case = models.ForeignKey('Case', blank = True, null = True)
     evidence = models.FileField(upload_to=evidence_upload_location)
     timestamp = models.DateTimeField(auto_now_add=True)
 
