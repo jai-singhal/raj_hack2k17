@@ -6,9 +6,11 @@ from model_utils.managers import InheritanceQuerySet
 class CustomUserModelBackend(ModelBackend):
     def get_user(self, user_id):
         try:
-            return InheritanceQuerySet(User).select_subclasses().get(pk=user_id)
+
+        	return InheritanceQuerySet(User).select_subclasses().get(pk=user_id)
         except User.DoesNotExist:
-            return None
+        	return None
+
 
     def authenticate(self, request, username=None, password=None):
         try:
