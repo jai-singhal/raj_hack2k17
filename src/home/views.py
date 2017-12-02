@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect
 from .forms import AnonymousTipForm, AnonymousUsersLoginForm
+from police.models import Criminal
 from .forms import EvidenceForm
 from home.models import Evidence
 from django.views import View
@@ -46,6 +47,15 @@ def anonymous_dashboard(request):
     if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="AnonymousUser":
         raise Http404
     return render(request,'anonymous/dashboard.html',{'citizen':request.user})
+
+
+
+def criminal_directory(request):
+    num = list(range(1,1+len(Criminal.objects.all())))
+    cqset=Criminal.objects.all()
+    var = zip(num,cqset)
+    return render(request, "criminal_directory.html",{'var':var})
+
 
 import random
 import string
