@@ -1,6 +1,7 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from .models import AnonymousTip
-from .forms import AnonymousTipForm
+from .forms import AnonymousTipForm, AnonymousUsersLoginForm
+
 
 def anonymous_tip(request):
     form = AnonymousTipForm(request.POST or None)
@@ -8,4 +9,18 @@ def anonymous_tip(request):
         instance = form.save(commit = False)
         instance.save()
         return redirect('')
-    return render(request,'anonymous_tip.html',{'form':form})
+    return render(request,'anonymous/tip.html',{'form':form})
+
+
+
+def anonymous_user_login(request):
+    if request.user.is_authenticated():
+        return redirect("/anonymous/dashboard")
+    form = AnonymousUsersLoginForm(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect("/anonymous/dashboard")
+    return render(request, "anonymous/login.html")
