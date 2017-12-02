@@ -21,7 +21,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return redirect("/citizen/dashboard")
-    return render(request, "citizen/login.html")
+    return render(request, "citizen/login.html",{'form':form})
 
 def dashboard(request):
     if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="Citizen":
@@ -38,9 +38,6 @@ def citizen_logout(request):
 
 def register_view(request):
     form = UsersRegisterForm(request.POST or None)
-    print(request.POST)
-    print('__________________________')
-    print(form)
     if form.is_valid():
         user = form.save()
         password = form.cleaned_data.get("password")
