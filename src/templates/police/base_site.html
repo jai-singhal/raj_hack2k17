@@ -96,6 +96,54 @@
         <script src="/static/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
         <!-- starrr -->
         <script src="/static/vendors/starrr/dist/starrr.js"></script>
+
+
+
+
+<script type="text/javascript">
+   
+   $(document).ready(function(){
+    console.log('sasas')
+        $.ajax({
+            type : 'GET',
+            contentType: "application/json; charset=utf-8",
+            url :  "{% url 'get_categories' %}",
+            datatype : 'json',
+           // data : {"status": 1},
+
+            success : function(data){
+
+              var case_data = JSON.parse(data.case_data)
+
+              content = "";
+              for(var i = 0; i < case_data.length; i++){
+                  content += "<li><a href= '/police/cbc/" + case_data[i].pk + "'"  + ">" + case_data[i].fields.name +"</a></li>"
+              }
+
+              $("#case_category").append(content)
+              
+              var cyber_data = JSON.parse(data.cyber_data)
+
+              content = "";
+              for(var i = 0; i < cyber_data.length; i++){
+                  content += "<li><a href= '/police/cybercbc/" + cyber_data[i].pk + "'"  + ">" + cyber_data[i].fields.name +"</a></li>"
+              }
+
+              $("#get_cyber_category").append(content)
+            },
+            error: function(data){
+                console.log(data, "xxx ")
+            }
+        });
+
+      })
+
+  
+
+  
+
+</script>
+
       {% endblock %}
       <!-- Custom Theme Scripts -->
       <script src="/static/build/js/custom.js"></script>

@@ -18,20 +18,32 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Citizen',
+            name='AnonymousTip',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('title', models.CharField(max_length=80)),
+                ('description', models.TextField()),
+                ('timestamp', models.DateTimeField(auto_now_add=True)),
+                ('incident_time', models.DateTimeField()),
+                ('updated', models.DateTimeField(auto_now=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='AnonymousUser',
             fields=[
                 ('user_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
-                ('contact', models.CharField(max_length=11)),
-                ('aadhaar', models.CharField(max_length=12)),
-                ('bhamashah', models.CharField(max_length=12)),
-                ('dob', models.DateField()),
             ],
             options={
-                'verbose_name': 'Citizen',
+                'verbose_name': 'Anonymous User',
             },
             bases=('auth.user',),
             managers=[
                 ('objects', django.contrib.auth.models.UserManager()),
             ],
+        ),
+        migrations.AddField(
+            model_name='anonymoustip',
+            name='userid',
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='home.AnonymousUser'),
         ),
     ]

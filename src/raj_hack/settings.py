@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "case",
     "citizen",
     "police",
-    "comment"
+    "comment",
+    'home'
 ]
 
 MIDDLEWARE = [
