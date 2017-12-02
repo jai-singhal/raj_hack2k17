@@ -38,6 +38,10 @@
       <div class = "logo col-md-3 col-sm-3">
         <img src = "{% static 'images/Rajasthan-Police.jpg' %}" style="height:130px; margin-top:20px;">
       </div>
+        <div class = "logo col-md-6 col-sm-6"></div>
+      <div class = "logo col-md-3 col-sm-3">
+        <img  class ="img-flip" src = "{% static 'images/cm.png' %}" style="height:130px; margin-top:20px; float: right;">
+      </div>
     </div>
   </div>
 
@@ -51,81 +55,14 @@
       <div id="navbar" class="navbar-collapse collapse" >
         <ul class="nav navbar-nav">
           <li class="dropdown"><a href="/">Home</a></li>
-          <li class="dropdown"><a href="pressrelease.asp">Press release</a></li>
-          <li class="dropdown"><a href="pressrelease.asp">Report a Crime</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">help us <span class="caret"></span></a>
-
+          <li class="dropdown"> <a href="contact.asp" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="downloads/Absconder.zip">Absconders List </a></li>
-              <li><a href="cofeposa/Index.pdf">L.O.C. under Cofeposa   </a></li>
-              <li><a href="downloads/CRB LIST.zip">Convicted Accused List  </a></li>
-              <li><a href="tracedvehicles.asp">Unclaimed Vehicles List </a></li>
-              <li><a href="deadbodies.asp">Unidentified Dead Bodies </a></li>
-
+              <li><a href="#">Report Crime</a></li>
             </ul>
           </li>
-
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">special units <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="crimebranch.asp">Crime Branch</a></li>
-              <li><a href="crimebranch.asp#armed">Local Armed Police</a></li>
-              <li><a href="crimebranch.asp#riot">Riot Control Police</a></li>
-              <li><a href="quickresponceteam.asp">Quick Response Team</a></li>
-              <li><a href="crimebranch.asp#traffic">Traffic</a></li>
-              <li><a href="crimebranch.asp#economic">Economic Offences Wing</a></li>
-              <li><a href="crimebranch.asp#enforcement">Enforcement Branch</a></li>
-              <li><a href="crimebranch.asp#japu">Juvenile Aid Protection Unit</a></li>
-              <li><a href="crimebranch.asp#antnc">Anti-Norcotics Cell</a></li>
-              <li><a href="antiextortioncell.asp">Anti-Extortion Cell</a></li>
-              <li><a href="crimebranch.asp#preventive">Preventive Branch</a></li>
-              <li><a href="modusoperandibureau.asp">Modus Operandi Bureau</a></li>
-              <li><a href="missingpersonsbureau.asp">Missing Persons Bureau</a></li>
-              <li><a href="antiterrorismsquad.asp">Anti Terrorism Squad</a></li>
-              <li><a href="specialbranch.asp">Special Branch</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">safety tips<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="residential.asp">Residential </a></li>
-              <li><a href="commercial.asp">Commercial </a></li>
-              <li><a href="vehicletheft.asp">Vehicle Theft </a></li>
-
-              <li><a href="physicalsecurity.asp">Physical Security Measures </a></li>
-              <li><a href="property.asp">Property Purchase </a></li>
-              <li><a href="banking.asp">Banking Precautions </a></li>
-              <li><a href="gulf.asp">Gulf Jobs  </a></li>
-              <li><a href="fraudmoney.asp">Fraud Money Schemes </a></li>
-              <li><a href="emergency.asp">Emergency Situation  </a></li>
-              <li><a href="seniorsafety.asp">Senior Citizen's Safety  </a></li>
-              <li><a href="citizencharter.asp">Citizens' Charter  </a></li>
-              <li><a href="dosanddonts.asp">Do's &amp; Don'ts </a></li>
-              <li><a href="womensafety.asp">Children &amp; Women Safety </a></li>
-
-            </ul>
-          </li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Initiatives<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="../initiatives_virtualnw.asp?type=virtual#virtual">Virtual Private Network </a></li>
-              <li><a href="../initiatives_virtualnw.asp?type=zopadpatti#zopadpatti">Zopadpatti Panchayat</a></li>
-              <li><a href="initiatives_sat_meeting.asp">Saturday Police Station Meetings  </a></li>
-              <li><a href="initiatives_rehabilitation.asp">Rehabilitation   </a></li>
-              <li><a href="elderline.asp">Elder Line  </a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="downloads/Licensingunitheading.pdf">licensing unit</a></li>
-          <li class="dropdown"><a href="downloads.asp">downloads</a></li>
-
-          <li class="dropdown"> <a href="contact.asp" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">contact us<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-
-              <li><a href="Senior Officers.pdf">Senior Officer's Contact Details </a></li>
-              <li><a href="complaint.asp">Lodge a Complaint </a></li>
-              <li><a href="falsecomplaint.asp">False Complaint </a></li>
-              <li><a href="emergencynumbers.asp">Emergency Numbers</a></li>
-            </ul>
-          </li>
-
+          <li class="dropdown"><a href="#">Anonymous Tip</a></li>
+          <li class="dropdown"><a href="#">About Us</a></li>
+          <li class="dropdown"><a href="#">Contact Us</a></li>
         </ul>
       </div>
     </div>
@@ -136,39 +73,102 @@
 .block{
   background-color: red;
   height:200px;
-  margin-bottom: 10px;
-  margin-right:10px;
+
+  }
+
+.img-flip {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+
+.row{
+  margin-bottom: 30px;
+}
+
+.services{
+    color: white;
+    padding: 50px 15px;
+}
+
+.welcome{
+  margin-left: 2px;
+  margin-right: 3px;
+  background-color: orange;
+  border-color: orange;
+  padding-left: 18px;
+  padding-bottom: 5px;
+}
+
+.footer-text{
+color: white;
+}
+
+.link_white{
+    color: white;
+}
+
+.link_white:hover{
+    color: white;
 }
 
 </style>
 <br><br>
 <div class = "container">
   <div class = "col-md-9 col-sm-9">
+    <div class="row welcome">
+      <h3><b>WELCOME</b></h3>
+    </div>
+    <div>
+      The Rajasthan Police is the law enforcement agency for the state of Rajasthan in India. The Rajasthan Police has its headquarters in Jaipur, the state capital. The motto of the force is सेवार्थ कटिबद्धता, which means "committed to serve". Rajasthan was formed by the merger of the erstwhile princely states.
+      <br/><br/>The security and the police forces of the former princely states varied in composition, functions and administrative procedures. Following the merger, the police forces of the princely states united as of January, 1951.<a href="https://en.wikipedia.org/wiki/Rajasthan_Police"> Read More</a>
+    </div>
+    <br/><br/>
+
+
+    <div class="row welcome">
+      <h3><b>SERVICES</b></h3>
+    </div>
+
     <div class = "row">
-        <div class = "col-md-3 col-sm-3 block">
+        <div class = "col-md-4 col-sm-4">
+        <div class="block"><div class="services"><center><b><h2><a class="link_white" href="/citizen/create_case">Report Civilian Crime</a></h2></b><center></div></div>
         </div>
-        <div class = "col-md-3 col-sm-3 block">
+
+        <div class = "col-md-4 col-sm-4">
+        <div class="block"><div class="services"><center><b><h2>Report Cyber Crime</h2></b><center></div></div>
         </div>
-        <div class = "col-md-3 col-sm-3 block">
+
+        <div class = "col-md-4 col-sm-4">
+        <div class="block"><div class="services"><center><b><h2>Give an Anonymous Tip</h2></b><center></div></div>
+        </div>
+
+    </div>
+
+    <div class = "row">
+
+        <div class = "col-md-4 col-sm-4">
+        <div class="block"><div class="services"><center><b><h2>Criminal Directory</h2></b><center></div></div>
+        </div>
+
+        <div class = "col-md-4 col-sm-4">
+        <div class="block"><div class="services"><center><b><h2>Citizen Portal</h2></b><center></div></div>
+        </div>
+
+        <div class = "col-md-4 col-sm-4">
+        <div class="block"><div class="services"><center><b><h2>Police Portal</h2></b><center></div></div>
         </div>
     </div>
-    <div class = "row">
-      <div class = "col-md-3 col-sm-3 block">
-      </div>
-      <div class = "col-md-3 col-sm-3 block">
-      </div>
-      <div class = "col-md-3 col-sm-3 block">
-      </div>
-    </div>
+
+
+
   </div>
 
-  <div class = "col-md-3 col-sm-3" style=" height:500px; border-style: solid; border-width:0 0 0 2px; border-color:black;">
-      <div class = "col-md-12">
-        <a class="twitter-timeline"
-        href="https://twitter.com/policerajasthan">
-      Tweets by @policerajasthan
-      </a>
-      </div>
+  <div class = "col-md-3 col-sm-3">
+      <a class="twitter-timeline" data-height="600" href="https://twitter.com/PoliceRajasthan?ref_src=twsrc%5Etfw">Tweets by PoliceRajasthan</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </div>
 </div>
 
@@ -176,17 +176,42 @@
 
 
 
+<br>
+<br>
 
-  
 <!-- Footer -->
-<div class = "footer-body" style="background-color:black; height:300px; width:100%;">
+<div class = "footer-body" style="background-color:black; height:250px; width:100%;">
+    <br>
   <div class = "container-fluid">
-    <div class = "col-md-4 col-sm-4 col-xs-4">
+    <div class = "col-md-4 col-sm-4 col-xs-4 footer-text">
+      <div><b><h4>ABOUT US</h4></b></div><hr>
+      The Rajasthan Police is the law enforcement agency for the state of Rajasthan in India. The Rajasthan Police has its headquarters in Jaipur, the state capital.
+    </div>
+    <div class = "col-md-4 col-sm-4 col-xs-4 footer-text">
+        <div><center><b><h4>LINKS</h4></b><br></div></center>
+        <div class = "col-md-4 col-sm-4">
+            <div class = "row">
+                <div class = "col-md-6">Services</div>
+                <div class = "col-md-6">Sitemap</div>
+                <div class = "col-md-6">Downloads</div>
+                <div class = "col-md-6">Contact us</div>
 
+            </div>
+            <div class = "row">
+            </div>
+            <div class = "row">
+            </div>
+             <div class = "row">
+            </div>
+        </div>
     </div>
     <div class = "col-md-4 col-sm-4 col-xs-4">
-    </div>
-    <div class = "col-md-4 col-sm-4 col-xs-4">
+      <iframe
+      width="400"
+      height="200"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAC7gvSmfaRMtnAKNg9pykj4Co32ue3A6o&q=Rajasthan" allowfullscreen>
+      </iframe>
     </div>
   </div>
 </div>

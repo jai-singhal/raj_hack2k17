@@ -1,4 +1,4 @@
-{% extends "citizen/base_site.html" %}
+{% extends "police/base_site.html" %}
 
 {% block title %} Login {% endblock title %}
 
@@ -17,86 +17,35 @@
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <h1>Citizen Login</h1>
+          <h1 style="margin-top:-25px;">User Login</h1></section>
+
           <form method="POST"  enctype="multipart/form-data">
               {% csrf_token %}
-            <div>
-              <input type="text" name='username' class="form-control" placeholder="Username" required />
-            </div>
-            <div>
-              <input type="password" name='password' class="form-control" placeholder="Password" required />
-            </div>
-            <div>
+              {{form.as_p}}
+
+
                 <input class="btn btn-default submit" type="submit" value="Login">
-           </div>
+
           </form>
-
-            <div class="clearfix"></div>
-
-          <div class="separator">
-              <p class="change_link">New to site?
-                <a href="register" class="to_register"> Create Account </a>
-              </p>
-
-              <div class="clearfix"></div>
-              <br />
-
-              <div>
-                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-              </div>
-            </div>
-          </form>
-        </section>
-      </div>
-
-      <div id="register" class="animate form registration_form">
-        <section class="login_content">
-          <form>
-            <h1>Create Account</h1>
-            <div>
-              <input type="text" class="form-control" placeholder="Username" required="" />
-            </div>
-            <div>
-              <input type="email" class="form-control" placeholder="Email" required="" />
-            </div>
-            <div>
-              <input type="password" class="form-control" placeholder="Password" required="" />
-            </div>
-            <div>
-              <a class="btn btn-default submit" href="index.html">Submit</a>
-            </div>
-
             <div class="clearfix"></div>
 
             <div class="separator">
-              <p class="change_link">Already a member ?
-                <a href="#signin" class="to_register"> Log in </a>
+              <p class="change_link">Not registered ?
+                <a href="./register" class="to_register"> Sign Up </a>
               </p>
 
               <div class="clearfix"></div>
               <br />
-
-              <div>
-                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-              </div>
-            </div>
-          </form>
-        </section>
-      </div>
-    </div>
-  </div>
-
-              <div class="clearfix"></div>
-              <br />
-
-              <div>
+                <div>
                 <h1><i class="fa fa-paw"></i> Rajasthan E-Police</h1>
               </div>
             </div>
-</div>
+
+      </div>
 
     </div>
   </div>
 {% endblock body %}
+
+
+
