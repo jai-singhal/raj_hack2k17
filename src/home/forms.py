@@ -1,18 +1,29 @@
 from django import forms
+from django.contrib.auth import authenticate
+
 from .models import AnonymousTip
 
 
-class AnonymousTipForm(forms.Form):
+class AnonymousTipForm(forms.ModelForm):
+    incident_time = forms.DateField(widget=forms.SelectDateWidget)
+
     class Meta:
         model = AnonymousTip
         fields = '__all__'
         exclude = ['userid']
 
-    # def __init__(self , *args, ** kwargs):
-    #     super(AnonymousTipForm,self).__init__(*args, **kwargs)
-    #
-    # def clean(self):
-    #     pass
+
+    def __init__(self, *args, **kwargs):
+        super(AnonymousTipForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({
+            'class': 'form-control',
+            "name":"title"})
+        self.fields['description'].widget.attrs.update({
+            'class': 'form-control',
+            "name":"description"})
+        self.fields['incident_time'].widget.attrs.update({
+            'class': 'form-control',
+            "name":"incident_time"})
 
 
 class AnonymousUsersLoginForm(forms.Form):

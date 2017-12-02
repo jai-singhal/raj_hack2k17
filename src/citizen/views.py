@@ -1,16 +1,23 @@
 from django.http import Http404
 from django.shortcuts import render
-
-# Create your views here.
+from django.contrib.auth import logout
 
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import UsersLoginForm
+<<<<<<< HEAD
 from case.forms import *
+=======
+from .forms import UsersRegisterForm
+
+>>>>>>> 7d59336bce7c17d260927a30d6c9a915b4cd59f9
 
 def login_view(request):
-    # if request.user.is_authenticated():
-    #     return redirect("/citizen/dashboard")
+
+    if  str(request.user.__class__.__name__)=="Citizen":
+        return redirect('/citizen/dashboard')
+
+
     form = UsersLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
@@ -21,14 +28,16 @@ def login_view(request):
     return render(request, "citizen/login.html")
 
 def dashboard(request):
-    if request.user.is_authenticated() and str(request.user.__class__.__name__)=="Citizen":
-        pass
-    else:
+    if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="Citizen":
         raise Http404
-    return render(request,'citizen/dashboard.html')
+    return render(request,'citizen/dashboard.html',{'citizen':request.user})
 
 
-from .forms import UsersRegisterForm
+def citizen_logout(request):
+    logout(request)
+
+    return redirect("/")
+
 
 
 def register_view(request):

@@ -17,7 +17,7 @@ class AnonymousTip(models.Model):
     description = models.TextField()
     userid = models.ForeignKey(AnonymousUser,null=True,blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    incident_time = models.DateTimeField()
+    incident_time = models.DateField()
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):

@@ -40,14 +40,12 @@
 
           {% block sidebar %}
             <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
-              {% include "police/sidebar.html" %}
+              {% include "citizen/sidebar.html" %}
             </div>
           {% endblock sidebar %}
 
           {% block top_navigation %}
-            <div class="top_nav">
-              {% include "app/top_navigation.html" %}
-            </div>
+
           {% endblock top_navigation %}
 
           {% block content %}
@@ -101,4 +99,5 @@
       <script src="/static/build/js/custom.js"></script>
     {% endblock body %}
   </body>
+
 </html>
