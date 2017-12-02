@@ -1,19 +1,23 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{% url 'dashboard' %}" class="site_title"><i class="fa fa-spinner"></i> <span>Police Dashboard</span></a>
+    <a href="{% url 'police_dashboard' %}" class="site_title"><i class="fa fa-spinner"></i> <span>Police Dashboard</span></a>
   </div>
 
   <div class="clearfix"></div>
 
   <!-- menu profile quick info -->
   <div class="profile clearfix">
-    <div class="profile_pic">
+    <!-- <div class="profile_pic">
       <img src="#" alt="..." class="img-circle profile_img">
-    </div>
+    </div> -->
     <div class="profile_info">
-      <span>Welcome,</span>
+       <span>Hello <b>{{request.user.username}}!</b></span>
+      <hr>
+      <span>Welcome to</span>
       <h2>{{  ward_object.id }}</h2>
+    <hr>
     </div>
+
   </div>
   <!-- /menu profile quick info -->
 
@@ -37,6 +41,7 @@
           </ul> 
         </li>
        
+
       </ul>
     </div>
 

@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render,get_object_or_404
 from case.models import *
+from .models import *
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
@@ -48,7 +49,47 @@ def dashboard(request):
         raise Http404
     print(request.user.__class__.__name__)
     ward_object=request.user.ward
-    context={"ward_object":ward_object}
+    
+    total_cases_count=Case.objects.all().count()
+    approved_cases_count=Case.objects.filter(approved=True).count()
+    solved_cases_count=Case.objects.filter(solved=True).count()
+    pending_cases_count=total_cases_count-approved_cases_count
+    
+    pqset=Police.objects.filter(ward=request.user.ward)
+
+    desig={
+        'DGP': 'Director General of Police',
+        'ADGP': 'Addl. Director General of Police',
+        'IGP': 'Inspector General of Police',
+        'DIGP': 'Deputy Inspector General of Police',
+        'SPDCP': 'Superintendent of police Deputy Commissioner of Police(Selection Grade)',
+        'SPDCPJ': 'Superintendent of police Deputy Commissioner of Police(Junior Management Grade)',
+        'ASPADCP': 'Addl. Superintendent of police Addl.Deputy Commissioner of Police',
+        'ASP': 'Assistant Superintendent of Police',
+        'INSP': 'Inspector of Police',
+        'SUB_INSP': 'Sub Inspector of Police.',
+        'HVLDRM': 'Asst. Sub. Inspector/Havildar Major',
+        'HVLDR': 'Havildar.',
+        'LN': 'Lance Naik.',
+        'CONS': 'Constable.',
+        }
+    res=[]
+    for obj in pqset:
+        res.append([obj.get_full_name(),desig[obj.designation]])
+
+
+
+
+    context={
+    "total_cases_count":total_cases_count,
+    "approved_cases_count":approved_cases_count,
+    "pending_cases_count":pending_cases_count,
+    "solved_cases_count":solved_cases_count,
+    "res":res,
+    "ward_object":ward_object
+
+
+    }
     return render(request,'police/dashboard.html',context)
 
 
@@ -74,11 +115,16 @@ def cybercbcview(request,id=None):
 
 from comment.models import Comment
 
-def case_detail(request,id=None):
+def case_detail(request,id=None,approved=None):
     if not request.user.is_authenticated():
         raise Http404
+    app=approved
     comments = Comment.objects.filter(case = id)
     my_object = get_object_or_404(Case, id=id)
+    if app=='1':
+        my_object.approved=True
+        print("yppppppppppppppp")
+        my_object.save()
     wqset=Witness.objects.filter(case=my_object)
     ward_object=request.user.ward
     police_id = request.user.id

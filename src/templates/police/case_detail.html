@@ -107,7 +107,12 @@
                     <div class="mail_heading row">
                       <div class="col-md-8">
                         <div class="btn-group">
-                          <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-check"></i> Approve</button>
+                          {% if my_object.approved %}
+
+                          <button class="btn btn-sm btn-danger" type="button"><i class="fa fa-star"></i> Approved</button>
+                          {% else %}
+                          <a href="/police/case_detail/{{my_object.id}}/1/"><button class="btn btn-sm btn-primary" type="button"><i class="fa fa-check"></i> Approve</button></a>
+                          {% endif %}
                           <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Comment"><i class="fa fa-comments-o"></i></button>
 
                         </div>

@@ -50,15 +50,21 @@ class Case(models.Model):
     reg_from_loc = models.CharField(max_length=255, blank=False)
     userid = models.ForeignKey(Citizen)
     ward_id = models.CharField(max_length=255, blank=False)
-    incident_time = models.DateTimeField()
-
+    incident_time = models.DateField()
+    approved=models.BooleanField()
+    solved=models.BooleanField()
+    
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
     def get_absolute_url(self):
-        return reverse("case_detail",kwargs={"id":self.id})
+        if self.approved==True:
+            app=1
+        else:
+            app=0
+        return reverse("case_detail",kwargs={"id":self.id,"approved":app})
 
 
 

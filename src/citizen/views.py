@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import UsersLoginForm
-
+from case.forms import *
 
 def login_view(request):
     # if request.user.is_authenticated():
@@ -46,3 +46,14 @@ def register_view(request):
         print('Citizem',new_user,'successfully logged in')
         return redirect("/citizen/dashboard")
     return render(request, "citizen/register.html",{"form" : form,})
+
+
+
+
+def create_case(request):
+    form=case_form(request.POST or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.save()
+        return redirect("/citizen/dashboard")
+    return render(request, "citizen/case.html",{"form" : form,})
