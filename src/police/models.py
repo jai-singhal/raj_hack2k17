@@ -70,3 +70,22 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.ward
+
+
+
+
+
+class Criminal(models.Model):
+    name = models.CharField(max_length=255, blank=False)
+
+    father_name = models.CharField(max_length=255)
+    age = models.IntegerField(max_length=255)
+    caste = models.CharField(max_length=255)
+    ward=models.ForeignKey(Ward,null=True)
+    birth_mark_desc=models.TextField()
+    height=models.CharField(max_length=255)
+    complexion=models.CharField(max_length=255)
+    eyes=models.CharField(max_length=255)
+   
+
+

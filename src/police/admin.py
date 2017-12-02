@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms import CheckboxSelectMultiple
 from django import forms
-from .models import Police,Ward,Contact
+from .models import *
 from django.db import models
 
 
@@ -29,3 +29,4 @@ class CaseAdmin(admin.ModelAdmin):
 admin.site.register(Police,PoliceAdmin)
 admin.site.register(Ward)
 admin.site.register(Contact)
+admin.site.register(Criminal)

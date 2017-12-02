@@ -14,7 +14,7 @@
        <span>Hello <b>{{request.user.username}}!</b></span>
       <hr>
       <span>Welcome to</span>
-      <h2>{{  ward_object.id }}</h2>
+      <h2>{{  request.user.ward.id }}</h2>
     <hr>
     </div>
 
@@ -41,7 +41,7 @@
           </ul>
         </li>
 
-        <li ><a ><i class="fa fa-share"></i>Anonymous Tips / Complains <span class=""></span></a>
+        <li ><a href="/police/atips/"><i class="fa fa-share"></i>Anonymous Tips / Complains <span class=""></span></a>
           <ul class="nav child_menu" id = "get_cyber_category">
 
           </ul>
@@ -55,20 +55,5 @@
   </div>
   <!-- /sidebar menu -->
 
-  <!-- /menu footer buttons -->
-  <div class="sidebar-footer hidden-small">
-    <a data-toggle="tooltip" data-placement="top" title="Settings">
-      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-    </a>
-    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-      <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-    </a>
-    <a data-toggle="tooltip" data-placement="top" title="Lock">
-      <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-    </a>
-    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-      <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-    </a>
-  </div>
-  <!-- /menu footer buttons -->
+
 </div>

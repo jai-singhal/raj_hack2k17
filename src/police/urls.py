@@ -16,6 +16,10 @@ urlpatterns = [
 
 	url(r'^case_detail/(?P<id>\d+)/(?P<approved>\d+)/$', case_detail , name='case_detail'),
 
+	url(r'^create_criminal_details/$', create_criminal_details , name='create_criminal_details'),
+
+	url(r'^atips/$', atips , name='atips'),
+	url(r'^atip_detail/(?P<id>\d+)/$', atip_detail, name='atip_detail'),
 
 
 ]
