@@ -1,4 +1,4 @@
-{% extends "citizen/base_site.html" %}
+{% extends "police/base_site.html" %}
 
 {% block title %} Login {% endblock title %}
 
@@ -46,9 +46,11 @@
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <h1>Citizen Login</h1>
+          <h1 style="margin-top:-25px;">User Login</h1></section>
+
           <form method="POST"  enctype="multipart/form-data">
               {% csrf_token %}
+<<<<<<< HEAD
             <div>
               <input type="text" name='username' class="form-control" placeholder="Username" required />
             </div>
@@ -69,41 +71,38 @@
 
               </div>
             </div>
+=======
+              {{form.as_p}}
+
+
+                <input class="btn btn-default submit" type="submit" value="Login">
+
+>>>>>>> cf94d1346e4f7fdf9e34b1d8ac00db5b36f10268
           </form>
-        </section>
-      </div>
-
-      <div id="register" class="animate form registration_form">
-        <section class="login_content">
-          <form>
-            <h1>Create Account</h1>
-            <div>
-              <input type="text" class="form-control" placeholder="Username" required="" />
-            </div>
-            <div>
-              <input type="email" class="form-control" placeholder="Email" required="" />
-            </div>
-            <div>
-              <input type="password" class="form-control" placeholder="Password" required="" />
-            </div>
-            <div>
-              <a class="btn btn-default submit" href="index.html">Submit</a>
-            </div>
-
             <div class="clearfix"></div>
 
             <div class="separator">
-              <p class="change_link">Already a member ?
-                <a href="#signin" class="to_register"> Log in </a>
+              <p class="change_link">Not registered ?
+                <a href="./register" class="to_register"> Sign Up </a>
               </p>
 
+<<<<<<< HEAD
+=======
+              <div class="clearfix"></div>
+              <br />
+                <div>
+                <h1><i class="fa fa-paw"></i> Rajasthan E-Police</h1>
+              </div>
+>>>>>>> cf94d1346e4f7fdf9e34b1d8ac00db5b36f10268
             </div>
-          </form>
-        </section>
+
       </div>
+
     </div>
   </div>
+{% endblock body %}
 
+<<<<<<< HEAD
 </div>
 
     </div>
@@ -141,3 +140,7 @@
 
 
     {% endblock %}
+=======
+
+
+>>>>>>> cf94d1346e4f7fdf9e34b1d8ac00db5b36f10268

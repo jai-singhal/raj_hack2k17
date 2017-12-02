@@ -46,8 +46,26 @@ class Police(User):
         return self.username
 
 
+ward_choice = (
+('RJ14W01','Mansarovar'),
+('RJ14W02','Jagatpura'),
+('RJ14W03','Sanganer'),
+('RJ14W04','Kachi Basti'),
+('RJ14W05','Malviya Nagar'),
+('RJ14W06','Bani Park'),
+('RJ14W07','Sitapura'),
+('RJ14W08','Raja Park'),
+('RJ14W09','Triveni Nagar'),
+('RJ14W10','Badi Chopat'),
+('RJ14W11','Chandpole'),
+
+)
+
+
+
+
 class Ward(models.Model):
-    id = models.CharField(max_length=10, primary_key=True)  # eg: RJ01w1,RJ01w2,RJ15w5
+    id = models.CharField(max_length=10, primary_key=True, choices=ward_choice)  # eg: RJ01w1,RJ01w2,RJ15w5
     address = models.CharField(max_length=255, blank=False)
 
     def get_contacts(self):

@@ -11,6 +11,7 @@
 {% block body_class %}login{% endblock body_class %}
 
 {% block body %}
+<<<<<<< HEAD
 
   <div class="login_wrapper">
     <div class="animate form login_form">
@@ -32,4 +33,41 @@
         </form>
       </section>
     </div>
+=======
+  <div>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <h1 style="margin-top:-25px;">User Register</h1></section>
+
+          <form method="POST"  enctype="multipart/form-data">
+              {% csrf_token %}
+
+              {{form.as_p}}
+
+
+                <input class="btn btn-default submit" type="submit" value="Register">
+
+          </form>
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">already register ?
+                <a href="/citizen" class="to_register"> Sign In </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+              <div>
+                <h1><i class="fa fa-paw"></i> Rajasthan E-Police</h1>
+              </div>
+            </div>
+
+      </div>
+
+    </div>
+  </div>
+>>>>>>> cf94d1346e4f7fdf9e34b1d8ac00db5b36f10268
 {% endblock body %}

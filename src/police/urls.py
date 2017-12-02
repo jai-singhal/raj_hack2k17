@@ -4,7 +4,7 @@ from .views import *
 urlpatterns = [
 
     url(r'^$', login_view , name='login'),
-    url(r'^dashboard/$', dashboard , name='dashboard'),
+    url(r'^dashboard/$', dashboard , name='police_dashboard'),
 	url(r'^logout/$', police_logout , name='police_logout'),
 
 	url(r'^cbc/(?P<id>\d+)/$', cbcview , name='cbc'),
@@ -12,9 +12,9 @@ urlpatterns = [
 	
 	
 	url(r'^ajax/get_category/', get_case_categories, name = "get_categories"),
-	url(r'^case_detail/(?P<id>\d+)/$', case_detail , name='case_detail'),
 	url(r'^person_detail/(?P<id>\d+)/$', person_detail_view, name='person_detail'),
 
+	url(r'^case_detail/(?P<id>\d+)/(?P<approved>\d+)/$', case_detail , name='case_detail'),
 
 
 

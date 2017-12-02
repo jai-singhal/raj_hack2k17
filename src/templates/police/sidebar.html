@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{% url 'dashboard' %}" class="site_title"><i class="fa fa-spinner"></i> <span>Police Dashboard</span></a>
+    <a href="{% url 'police_dashboard' %}" class="site_title"><i class="fa fa-spinner"></i> <span>Police Dashboard</span></a>
   </div>
 
   <div class="clearfix"></div>
@@ -11,9 +11,13 @@
       <img src="#" alt="..." class="img-circle profile_img">
     </div> -->
     <div class="profile_info">
-    <center>  <span>Welcome,</span>
-      <h2>{{  ward_object.id }}</h2></center>
+       <span>Hello <b>{{request.user.username}}!</b></span>
+      <hr>
+      <span>Welcome to</span>
+      <h2>{{  ward_object.id }}</h2>
+    <hr>
     </div>
+
   </div>
   <!-- /menu profile quick info -->
 
@@ -24,7 +28,7 @@
     <div class="menu_section">
       <h3>Quick Links</h3>
       <ul class="nav side-menu">
-        <li id = "get_category"><a ><i class="fa fa-home"></i>General Cases <span class="fa fa-chevron-down"></span></a>
+        <li id = "get_category"><a ><i class="fa fa-home"></i>Civilian Cases <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu" id = "case_category">
 
           </ul>
@@ -36,6 +40,13 @@
 
           </ul>
         </li>
+
+        <li ><a ><i class="fa fa-share"></i>Anonymous Tips / Complains <span class=""></span></a>
+          <ul class="nav child_menu" id = "get_cyber_category">
+
+          </ul>
+        </li>
+
 
       </ul>
     </div>
