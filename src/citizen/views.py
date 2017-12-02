@@ -9,8 +9,8 @@ from .forms import UsersLoginForm
 
 
 def login_view(request):
-    if request.user.is_authenticated():
-        return redirect("/police/dashboard")
+    # if request.user.is_authenticated():
+    #     return redirect("/citizen/dashboard")
     form = UsersLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
@@ -21,9 +21,11 @@ def login_view(request):
     return render(request, "citizen/login.html")
 
 def dashboard(request):
-    if not request.user.is_authenticated():
+    if request.user.is_authenticated() and str(request.user.__class__.__name__)=="Citizen":
+        pass
+    else:
         raise Http404
-    return render(request,'police/dashboard.html')
+    return render(request,'citizen/dashboard.html')
 
 
 from .forms import UsersRegisterForm
