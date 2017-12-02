@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from citizen.models import Citizen
+from police.models import Ward
 
 def evidence_upload_location(instance,filename):
     return '%s/%s/%s' % (instance.case.id, '/%Y/%m/%d/', filename)
@@ -49,7 +50,7 @@ class Case(models.Model):
     description = models.TextField()
     reg_from_loc = models.CharField(max_length=255, blank=False)
     userid = models.ForeignKey(Citizen)
-    ward_id = models.CharField(max_length=255, blank=False)
+    ward_id = models.ForeignKey(Ward)
     incident_time = models.DateField()
     approved=models.BooleanField()
     solved=models.BooleanField()

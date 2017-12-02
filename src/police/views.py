@@ -1,13 +1,10 @@
 from django.http import Http404
 from django.shortcuts import render,get_object_or_404
-<<<<<<< HEAD
 from case.models import *
 from .models import *
 
-=======
 import json
 from django.core.serializers import serialize
->>>>>>> 7d59336bce7c17d260927a30d6c9a915b4cd59f9
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 # Create your views here.

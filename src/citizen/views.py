@@ -5,12 +5,9 @@ from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import UsersLoginForm
-<<<<<<< HEAD
 from case.forms import *
-=======
 from .forms import UsersRegisterForm
 
->>>>>>> 7d59336bce7c17d260927a30d6c9a915b4cd59f9
 
 def login_view(request):
 
@@ -61,6 +58,16 @@ def register_view(request):
 
 def create_case(request):
     form=case_form(request.POST or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.save()
+        return redirect("/citizen/dashboard")
+    return render(request, "citizen/case.html",{"form" : form,})
+
+
+
+def create_cyber_case(request):
+    form=cyber_case_form(request.POST or None)
     if form.is_valid():
         instance=form.save(commit=False)
         instance.save()
