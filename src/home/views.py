@@ -28,7 +28,7 @@ def anonymous_user_login(request):
     if form.is_valid():
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
-        upload_evidence = forms.cleaned_data.get("upload_evidence")
+        upload_evidence = form.cleaned_data.get("upload_evidence")
         user = authenticate(username=username, password=password)
 
         login(request, user)
@@ -44,12 +44,31 @@ def anonymous_dashboard(request):
         raise Http404
     return render(request,'anonymous/dashboard.html',{'citizen':request.user})
 
+import random
+import string
+from .models import AnonymousUser
+def gen_uname_pass():
+    return (''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(9)),
+            ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(9))
+            )
 
 
 def upload_evidence(request):
     form = EvidenceForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
+        stay_in_touch = form.cleaned_data.get("stay_in_touch")
+        if stay_in_touch:
+            username, password = gen_uname_pass()
+            new_user = AnonymousUser.objects.create(username = username, password = password)
+            authenticate(new_user)
+            context = {
+                "username" : username,
+                "password": password
+            }
+            return render(request, "anonymous/get_cred.html", context)
+        else:
+            return redirect("/")
     else:
         print("form invalid")
     return render(request, "anonymous/evidence.html", {"form": form})

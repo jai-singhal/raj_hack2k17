@@ -42,5 +42,7 @@ class Evidence(models.Model):
         image2 =  models.ImageField(upload_to=image_upload_location, blank = True)
         doc =  models.FileField(upload_to=doc_upload_location, blank = True)
         video =  models.FileField(upload_to=doc_upload_location, blank = True)
+        stay_in_touch = models.BooleanField()
+
         def __str__(self):
             return str(self.id)
