@@ -16,4 +16,4 @@ def CreateComment(request):
 
 
 def HomePage(request):
-    return render(request, "home.html", {})
+    return render(request, "comment/base.html", {})
