@@ -1,4 +1,4 @@
-{% extends "police/base_site.html" %}
+{% extends "citizen/base_site.html" %}
 
 {% block title %} Login {% endblock title %}
 
@@ -17,7 +17,7 @@
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <h1>Police Login</h1>
+          <h1>Citizen Login</h1>
           <form method="POST"  enctype="multipart/form-data">
               {% csrf_token %}
             <div>

@@ -1,19 +1,22 @@
 from django.http import Http404
 from django.shortcuts import render,get_object_or_404
-from case.models import *
-
+import json
+from django.core.serializers import serialize
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
 # Create your views here.
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login ,logout
+
+from case.models import CaseCategory, CyberCaseCategories,Case, Witness
+
+from citizen.models import Citizen
 from .forms import UsersLoginForm
 
 
+
 def login_view(request):
-    if request.user.is_authenticated():
-        return redirect("/police/dashboard")
     form = UsersLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
@@ -23,8 +26,8 @@ def login_view(request):
         return redirect("/police/dashboard")
     return render(request, "police/login.html")
 
-import json
-from django.core.serializers import serialize
+
+
 def get_case_categories(request):
     if request.method == "GET" and request.is_ajax(): 
         case_category_qset= CaseCategory.objects.all()
@@ -42,17 +45,10 @@ def get_case_categories(request):
 
 
 def dashboard(request):
-    if request.user.is_authenticated() and str(request.user.__class__.__name__)=="Police":
-        pass
-    else:
+    if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="Police":
         raise Http404
-    
 
-    print(request.user.__class__.__name__)
-    ward_object=request.user.ward   
-
-
-
+    ward_object=request.user.ward
     context={"ward_object":ward_object}
     return render(request,'police/dashboard.html',context)
 
@@ -93,7 +89,9 @@ def case_detail(request,id=None):
 def person_detail_view(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
-    #api call get data and send it to a html
+
+    user = get_object_or_404(Citizen,id=id)
+    aadhaar_id = user.aadhaar
 
     context={}
     return render(request,'police/citizen_detail.html',context)
