@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTHENTICATION_BACKENDS = ('raj_hack_udp.auth_backend.CustomUserModelBackend', 'django.contrib.auth.backends.ModelBackend')
+AUTHENTICATION_BACKENDS = ('raj_hack.auth_backend.CustomUserModelBackend', 'django.contrib.auth.backends.ModelBackend')
 
 
 # Application definition

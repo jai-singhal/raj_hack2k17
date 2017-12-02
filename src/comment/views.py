@@ -15,5 +15,8 @@ def CreateComment(request):
     return JsonResponse(data, content_type="application/json")
 
 
-def HomePage(request):
+def CommentPage(request):
     return render(request, "comment/base.html", {})
+
+def HomePage(request):
+    return render(request, "index.html", {})
