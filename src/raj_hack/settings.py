@@ -25,7 +25,9 @@ SECRET_KEY = 's0z)!ev#=kq#^vnuj#o-!51k4-+_sf5s$pn_2uy^denot5ld56'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+AUTHENTICATION_BACKENDS = ('raj_hack_udp.auth_backend.CustomUserModelBackend', 'django.contrib.auth.backends.ModelBackend')
 
 
 # Application definition
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     "case",
     "citizen",
     "police",
+    "comment"
 ]
 
 MIDDLEWARE = [
@@ -57,7 +60,7 @@ ROOT_URLCONF = 'raj_hack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +120,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS= [
+   os.path.join(BASE_DIR, "static")
+]
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")

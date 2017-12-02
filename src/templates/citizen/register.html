@@ -1,0 +1,22 @@
+{% extends "police/base_site.html" %}
+
+{% block title %} Login {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <!-- Animate.css -->
+  <link href="/static/vendors/animate.css/animate.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block body %}
+ <form method="POST"  enctype="multipart/form-data">
+              {% csrf_token %}
+     {{ form }}
+            <div>
+                <input class="btn btn-default submit" type="submit" value="Register">
+           </div>
+          </form>
+{% endblock body %}
+

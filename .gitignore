@@ -7,7 +7,7 @@
 .tox/
 __pycache__
 MANIFEST
-
+db.sqlite3
 *.xlsx
 *.exe
 docs/_build/
