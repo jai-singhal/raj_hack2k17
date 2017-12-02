@@ -1,4 +1,4 @@
-{% extends "police/base_site.html" %}
+{% extends "citizen/base_site.html" %}
 
 {% block title %} Login {% endblock title %}
 
@@ -11,13 +11,42 @@
 {% block body_class %}login{% endblock body_class %}
 
 {% block body %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="bhamshahLoginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bhamasah Auth</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <span>Enter Bhamashah Family Key</span>
+              <input type="text" class="form-control" placeholder="Family key" id = "bhamshah_key" required="" />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id = "bhamshah_btn">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
   <div>
     <a class="hiddenanchor" id="signin"></a>
 
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <h1>Police Login</h1>
+          <h1>Citizen Login</h1>
           <form method="POST"  enctype="multipart/form-data">
               {% csrf_token %}
             <div>
@@ -30,7 +59,7 @@
                 <input class="btn btn-default submit" type="submit" value="Login">
            </div>
           </form>
-
+          <button type="button" class = "btn btn-primary" data-toggle="modal" data-target="#bhamshahLoginModel">Or Login via Bhamashah</button>
             <div class="clearfix"></div>
 
           <div class="separator">
@@ -38,12 +67,6 @@
                 <a href="register" class="to_register"> Create Account </a>
               </p>
 
-              <div class="clearfix"></div>
-              <br />
-
-              <div>
-                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
               </div>
             </div>
           </form>
@@ -74,13 +97,6 @@
                 <a href="#signin" class="to_register"> Log in </a>
               </p>
 
-              <div class="clearfix"></div>
-              <br />
-
-              <div>
-                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-              </div>
             </div>
           </form>
         </section>
@@ -88,15 +104,40 @@
     </div>
   </div>
 
-              <div class="clearfix"></div>
-              <br />
-
-              <div>
-                <h1><i class="fa fa-paw"></i> Rajasthan E-Police</h1>
-              </div>
-            </div>
 </div>
 
     </div>
   </div>
-{% endblock body %}
+
+  <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script>
+  $(document).ready(function(){
+      $("#bhamshah_btn").click(function(){
+          var key = $("#bhamshah_key").val();
+          $("#bhamshah_key").val("");
+          var url1 = "https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofAndMember/ForApp/"
+          var url2 = "?client_id=ad7288a4-7764-436d-a727-783a977f1fe1"
+
+          $.ajax({
+              type : 'GET',
+              contentType: "application/json; charset=utf-8",
+              url :  url1 + key + url2,
+              dataType : 'json',
+              success : function(data){
+                  console.log(data);
+              },
+              error: function(data){
+                  console.log(data, "xxx ");
+              }
+          });
+
+      })
+
+  })
+  </script>
+
+
+    {% endblock %}

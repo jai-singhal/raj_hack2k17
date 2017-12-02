@@ -11,12 +11,25 @@
 {% block body_class %}login{% endblock body_class %}
 
 {% block body %}
- <form method="POST"  enctype="multipart/form-data">
-              {% csrf_token %}
-     {{ form }}
-            <div>
-                <input class="btn btn-default submit" type="submit" value="Register">
-           </div>
-          </form>
-{% endblock body %}
 
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+        <h1>Citizen Register</h1>
+        <form method="POST"  enctype="multipart/form-data">
+               {{ form.as_p }}
+               <input class="btn btn-default submit" type="submit" value="Authenticate">
+        </form>
+          <div class="clearfix"></div>
+
+        <div class="separator">
+            <p class="change_link">New to site?
+              <a href="register" class="to_register"> Create Account </a>
+            </p>
+
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+{% endblock body %}
