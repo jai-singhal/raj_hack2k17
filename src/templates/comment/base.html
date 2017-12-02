@@ -1,7 +1,6 @@
 {% load static %}
 <style>
 body{
-  background-color: #dee1e3;
   font-family: "Roboto", "Tahoma", "Arial", sans-serif;,
 }
 
@@ -200,12 +199,14 @@ body{
   text-align: right;
   width: 15%;
 }
-
+.comments-app{
+  background-color:
+}
 </style>
 
 
 <div class="comments-app" ng-app="commentsApp" ng-controller="CommentsController as cmntCtrl">
-  <h1>Comments App</h1>
+  <h4>Comments</h4>
 
   <!-- From -->
   <div class="comment-form">
@@ -225,7 +226,7 @@ body{
     </form>
   </div>
 
-
+{% for comment_obj in comments %}
     <!-- Comments List -->
     <div class="comments" id = "comments_list">
       <!-- Comment -->
@@ -237,21 +238,19 @@ body{
 
         <!-- Comment Box -->
         <div class="comment-box">
-          <div class="comment-text"></div>
+          <div class="comment-text">{{comment_obj.comment}}</div>
           <div class="comment-footer">
             <div class="comment-info">
-              <span class="comment-author">
+              <span class="comment-author">{{comment_obj.user1}}
               </span>
-              <span class="comment-date"></span>
+              <span class="comment-date">{{comment.timestamp}}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
+{% endfor %}
 <!-- end of comment list -->
-
-</div>
-</div>
 
 
 <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -286,11 +285,16 @@ $.ajaxSetup({
 
 
 $(document).ready(function(){
+  var comment_by = "{{police_id}}";
+  var case_id = "{{my_object.id}}";
+
   $("#submit_comment").click(function(e){
     e.preventDefault();
     var comment = $("#comment").val();
     $("#comment").val("");
-    data = {"comment": comment, "token": csrftoken}
+
+    data = {"comment": comment, "csrftoken": csrftoken, "comment_by": comment_by, "case_id": case_id}
+
     data = JSON.stringify(data);
     $.ajax({
       type : 'POST',
@@ -305,9 +309,9 @@ $(document).ready(function(){
                   <img ng-src="#">
                 </div>
                 <div class="comment-box">
-                  <div class="comment-text"></div>
+                  <div class="comment-text">` + data.comment + `</div>
                   <div class="comment-footer">
-                    <div class="comment-info">` + data.comment + `
+                    <div class="comment-info">
                       <span class="comment-author">
                       </span>
                       <span class="comment-date"></span>

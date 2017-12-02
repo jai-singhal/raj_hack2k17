@@ -26,11 +26,11 @@ def login_view(request):
 import json
 from django.core.serializers import serialize
 def get_case_categories(request):
-    if request.method == "GET" and request.is_ajax(): 
+    if request.method == "GET" and request.is_ajax():
         case_category_qset= CaseCategory.objects.all()
         cyber_case_category_qset= CyberCaseCategories.objects.all()
-        cyber_data =  serialize("json", cyber_case_category_qset) 
-        case_data =  serialize("json", case_category_qset) 
+        cyber_data =  serialize("json", cyber_case_category_qset)
+        case_data =  serialize("json", case_category_qset)
         data = {
             "cyber_data": cyber_data,
             "case_data":case_data,
@@ -46,13 +46,8 @@ def dashboard(request):
         pass
     else:
         raise Http404
-    
-
     print(request.user.__class__.__name__)
-    ward_object=request.user.ward   
-
-
-
+    ward_object=request.user.ward
     context={"ward_object":ward_object}
     return render(request,'police/dashboard.html',context)
 
@@ -60,9 +55,9 @@ def dashboard(request):
 def cbcview(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
-    my_object = get_object_or_404(CaseCategory, pk=id)  
-    cases_qset=Case.objects.filter(case_categories=my_object , ward_id=request.user.ward)    
-     
+    my_object = get_object_or_404(CaseCategory, pk=id)
+    cases_qset=Case.objects.filter(case_categories=my_object , ward_id=request.user.ward)
+
     context={"my_object":my_object,"cases_qset":cases_qset}
     return render(request,'police/cases_by_cat.html',context)
 
@@ -70,21 +65,24 @@ def cbcview(request,id=None):
 def cybercbcview(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
-    my_cyber_object = get_object_or_404(CyberCaseCategories, pk=id)  
-    cyber_cases_qset=Case.objects.filter(cyber_case_categories=my_cyber_object , ward_id=request.user.ward)    
-     
+    my_cyber_object = get_object_or_404(CyberCaseCategories, pk=id)
+    cyber_cases_qset=Case.objects.filter(cyber_case_categories=my_cyber_object , ward_id=request.user.ward)
+
     context={"my_object":my_cyber_object,"cases_qset":cyber_cases_qset}
     return render(request,'police/cases_by_cat.html',context)
 
 
-
+from comment.models import Comment
 
 def case_detail(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
-    my_object = get_object_or_404(Case, id=id)  
-    wqset=Witness.objects.filter(case=my_object) 
-    context={"my_object":my_object,"wqset":wqset}
+    comments = Comment.objects.filter(case = id)
+    my_object = get_object_or_404(Case, id=id)
+    wqset=Witness.objects.filter(case=my_object)
+    ward_object=request.user.ward
+    police_id = request.user.id
+    context={"my_object":my_object,"wqset":wqset, "ward_object": ward_object, "police_id": police_id, "comments": comments}
     return render(request,'police/case_detail.html',context)
 
 
@@ -102,6 +100,5 @@ def person_detail_view(request,id=None):
 
 def police_logout(request):
     logout(request)
-    
-    return redirect("/")
 
+    return redirect("/")
