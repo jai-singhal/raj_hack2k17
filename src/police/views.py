@@ -12,8 +12,8 @@ from .forms import UsersLoginForm
 
 
 def login_view(request):
-    if request.user.is_authenticated():
-        return redirect("/police/dashboard")
+    # if request.user.is_authenticated():
+    #     return redirect("/police/dashboard")
     form = UsersLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
