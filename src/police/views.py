@@ -46,13 +46,8 @@ def dashboard(request):
         pass
     else:
         raise Http404
-
-
     print(request.user.__class__.__name__)
     ward_object=request.user.ward
-
-
-
     context={"ward_object":ward_object}
     return render(request,'police/dashboard.html',context)
 
@@ -77,14 +72,17 @@ def cybercbcview(request,id=None):
     return render(request,'police/cases_by_cat.html',context)
 
 
-
+from comment.models import Comment
 
 def case_detail(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
+    comments = Comment.objects.filter(case = id)
     my_object = get_object_or_404(Case, id=id)
     wqset=Witness.objects.filter(case=my_object)
-    context={"my_object":my_object,"wqset":wqset}
+    ward_object=request.user.ward
+    police_id = request.user.id
+    context={"my_object":my_object,"wqset":wqset, "ward_object": ward_object, "police_id": police_id, "comments": comments}
     return render(request,'police/case_detail.html',context)
 
 
