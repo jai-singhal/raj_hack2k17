@@ -101,3 +101,6 @@ class UsersRegisterForm(forms.ModelForm):
             raise forms.ValidationError("Password must be greater than 8 characters")
 
         return super(UsersRegisterForm, self).clean(*args, **keyargs)
+
+
+
