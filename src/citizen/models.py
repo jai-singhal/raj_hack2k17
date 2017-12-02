@@ -13,7 +13,7 @@ class Citizen(User):
         verbose_name = 'Citizen'
 
     def __str__(self):
-        return self.get_full_name()
+        return self.username
 
 
     def get_absolute_url(self):

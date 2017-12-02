@@ -31,7 +31,7 @@ class Police(User):
         verbose_name = 'Police'
 
     def __str__(self):
-        return self.get_full_name()
+        return self.username
 
 
 class Ward(models.Model):

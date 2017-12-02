@@ -9,8 +9,10 @@ from .forms import UsersRegisterForm
 
 
 def login_view(request):
+
     if  str(request.user.__class__.__name__)=="Citizen":
         return redirect('/citizen/dashboard')
+
 
     form = UsersLoginForm(request.POST or None)
     if form.is_valid():

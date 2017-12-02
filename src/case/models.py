@@ -51,7 +51,7 @@ class Case(models.Model):
     userid = models.ForeignKey(Citizen)
     ward_id = models.CharField(max_length=255, blank=False)
     incident_time = models.DateTimeField()
-    
+
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -79,4 +79,3 @@ class Case(models.Model):
 #     ('MC', 'Murder Case'),
 #     ('O', 'other'),
 # )
-
