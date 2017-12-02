@@ -26,4 +26,3 @@ class UsersLoginForm(forms.Form):
                 raise forms.ValidationError("Invalid Credentials")
 
         return super(UsersLoginForm, self).clean(*args, **keyargs)
-
