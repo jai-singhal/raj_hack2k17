@@ -54,7 +54,7 @@ class Case(models.Model):
     incident_time = models.DateField()
     approved=models.BooleanField()
     solved=models.BooleanField()
-    
+
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -67,6 +67,9 @@ class Case(models.Model):
             app=0
         return reverse("case_detail",kwargs={"id":self.id,"approved":app})
 
+    def get_absolute_url1(self):
+
+        return reverse("user_case_detail",kwargs={"id":self.id})
 
 
 #
