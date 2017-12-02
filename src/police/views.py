@@ -21,7 +21,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return redirect("/police/dashboard")
-    return render(request, "police/login.html")
+    return render(request, "police/login.html", {"form": form})
 
 import json
 from django.core.serializers import serialize

@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 
 
@@ -11,10 +12,12 @@ class UsersLoginForm(forms.Form):
         super(UsersLoginForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({
             'class': 'form-control',
-            "name":"username"})
+            "name":"username",
+            "placeholder":"Username"})
         self.fields['password'].widget.attrs.update({
             'class': 'form-control',
-            "name":"password"})
+            "name":"password",
+            "placeholder":"Password"})
 
     def clean(self, *args, **keyargs):
         username = self.cleaned_data.get("username")
@@ -23,6 +26,6 @@ class UsersLoginForm(forms.Form):
         if username and password:
             user = authenticate(username = username, password = password)
             if not user:
-                raise forms.ValidationError("Invalid Credentials")
+                raise forms.ValidationError(_("Invalid Credentials"))
 
         return super(UsersLoginForm, self).clean(*args, **keyargs)
