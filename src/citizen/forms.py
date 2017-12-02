@@ -38,7 +38,7 @@ class UsersRegisterForm(forms.ModelForm):
             "username",
             'first_name',
             'last_name',
-            'dob',
+            'birth_date',
             'aadhaar',
             'bhamashah',
             'contact',
