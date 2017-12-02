@@ -38,8 +38,9 @@ class UsersRegisterForm(forms.ModelForm):
             "username",
             'first_name',
             'last_name',
+            'dob',
             'aadhaar',
-            'bhamshah',
+            'bhamashah',
             'contact',
             "email",
             "confirm_email",
@@ -76,8 +77,8 @@ class UsersRegisterForm(forms.ModelForm):
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
         confirm_password = self.cleaned_data.get("confirm_password")
-        aadhaar = self.cleaned_data.get("aadhar")
-        bhamashah = self.cleaned_data.get("bhamshah")
+        aadhaar = self.cleaned_data.get("aadhaar")
+        bhamashah = self.cleaned_data.get("bhamashah")
 
         if email != confirm_email:
             raise forms.ValidationError("Email must match")

@@ -5,7 +5,8 @@ from django.db import models
 class Citizen(User):
     contact = models.CharField(max_length=11)
     aadhaar  = models.CharField(max_length=12)
-    bhamshah = models.CharField(max_length=12)
+    bhamashah = models.CharField(max_length=12)
+    dob = models.DateField()
 
     class Meta:
         verbose_name = 'Citizen'
