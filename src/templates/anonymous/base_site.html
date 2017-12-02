@@ -16,7 +16,7 @@
         <!-- Bootstrap -->
         <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Font Awesome -->
-        <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- NProgress -->
         <link href="/static/vendors/nprogress/nprogress.css" rel="stylesheet">
         <!-- bootstrap-daterangepicker -->
@@ -25,8 +25,7 @@
         <link href="/static/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
         <!-- bootstrap-progressbar -->
         <link href="/static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-        <!-- JQVMap -->
-        <link href="/static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+
       {% endblock stylesheets %}
       <!-- Custom Theme Style -->
       <link href="/static/build/css/custom.css" rel="stylesheet">
@@ -40,12 +39,14 @@
 
           {% block sidebar %}
             <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
-              {% include "citizen/sidebar.html" %}
+              {% include "anonymous/sidebar.html" %}
             </div>
           {% endblock sidebar %}
 
           {% block top_navigation %}
-
+            <div class="top_nav">
+              {% include "app/top_navigation.html" %}
+            </div>
           {% endblock top_navigation %}
 
           {% block content %}
@@ -72,32 +73,55 @@
         <!-- bootstrap-progressbar -->
         <script src="/static/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
         <!-- iCheck -->
-        <script src="/static/vendors/iCheck/icheck.min.js"></script>
-        <!-- bootstrap-daterangepicker -->
-        <script src="/static/vendors/moment/min/moment.min.js"></script>
-        <script src="/static/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <!-- bootstrap-wysiwyg -->
-        <script src="/static/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-        <script src="/static/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-        <script src="/static/vendors/google-code-prettify/src/prettify.js"></script>
-        <!-- jQuery Tags Input -->
-        <script src="/static/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-        <!-- Switchery -->
-        <script src="/static/vendors/switchery/dist/switchery.min.js"></script>
-        <!-- Select2 -->
-        <script src="/static/vendors/select2/dist/js/select2.full.min.js"></script>
-        <!-- Parsley -->
-        <script src="/static/vendors/parsleyjs/dist/parsley.min.js"></script>
-        <!-- Autosize -->
-        <script src="/static/vendors/autosize/dist/autosize.min.js"></script>
-        <!-- jQuery autocomplete -->
-        <script src="/static/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-        <!-- starrr -->
-        <script src="/static/vendors/starrr/dist/starrr.js"></script>
+
+
+<script type="text/javascript">
+
+   $(document).ready(function(){
+    console.log('sasas')
+        $.ajax({
+            type : 'GET',
+            contentType: "application/json; charset=utf-8",
+            url :  "{% url 'get_categories' %}",
+            datatype : 'json',
+           // data : {"status": 1},
+
+            success : function(data){
+
+              var case_data = JSON.parse(data.case_data)
+
+              content = "";
+              for(var i = 0; i < case_data.length; i++){
+                  content += "<li><a href= '/police/cbc/" + case_data[i].pk + "'"  + ">" + case_data[i].fields.name +"</a></li>"
+              }
+
+              $("#case_category").append(content)
+
+              var cyber_data = JSON.parse(data.cyber_data)
+
+              content = "";
+              for(var i = 0; i < cyber_data.length; i++){
+                  content += "<li><a href= '/police/cybercbc/" + cyber_data[i].pk + "'"  + ">" + cyber_data[i].fields.name +"</a></li>"
+              }
+
+              $("#get_cyber_category").append(content)
+            },
+            error: function(data){
+                console.log(data, "xxx ")
+            }
+        });
+
+      })
+
+
+
+
+
+</script>
+
       {% endblock %}
       <!-- Custom Theme Scripts -->
       <script src="/static/build/js/custom.js"></script>
     {% endblock body %}
   </body>
-
 </html>

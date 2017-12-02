@@ -5,8 +5,8 @@ from django.urls import reverse
 
 class Citizen(User):
     contact = models.CharField(max_length=11)
-    aadhaar  = models.CharField(max_length=12)
-    bhamashah = models.CharField(max_length=12)
+    aadhaar  = models.CharField(max_length=12,null=True,blank=True)
+    bhamashah = models.CharField(max_length=12,null=True,blank=True)
     birth_date = models.DateField()
 
     class Meta:
