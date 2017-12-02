@@ -2,6 +2,18 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+def image_upload_location(instance,filename):
+    return '%s/%s/%s' % (instance.case.id, 'evidence_images/%Y/%m/%d/', filename)
+
+def video_upload_location(instance,filename):
+    return '%s/%s/%s' % (instance.case.id, 'evidence_videos/%Y/%m/%d/', filename)
+
+def doc_upload_location(instance,filename):
+    return '%s/%s/%s' % (instance.case.id, 'evidence_docs/%Y/%m/%d/', filename)
+
+def audio_upload_location(instance,filename):
+    return '%s/%s/%s' % (instance.case.id, 'evidence_audios/%Y/%m/%d/', filename)
+
 
 designation_choice = (
     ('DGP', 'Director General of Police'),

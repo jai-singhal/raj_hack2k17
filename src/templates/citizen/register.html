@@ -11,6 +11,29 @@
 {% block body_class %}login{% endblock body_class %}
 
 {% block body %}
+<<<<<<< HEAD
+
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+        <h1>Citizen Register</h1>
+        <form method="POST"  enctype="multipart/form-data">
+               {{ form.as_p }}
+               <input class="btn btn-default submit" type="submit" value="Authenticate">
+        </form>
+          <div class="clearfix"></div>
+
+        <div class="separator">
+            <p class="change_link">New to site?
+              <a href="register" class="to_register"> Create Account </a>
+            </p>
+
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+=======
   <div>
     <a class="hiddenanchor" id="signin"></a>
 
@@ -46,4 +69,5 @@
 
     </div>
   </div>
+>>>>>>> cf94d1346e4f7fdf9e34b1d8ac00db5b36f10268
 {% endblock body %}

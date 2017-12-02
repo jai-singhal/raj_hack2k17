@@ -35,10 +35,7 @@ class UsersRegisterForm(forms.ModelForm):
     class Meta:
         model = Citizen
         fields = [
-            "username",
-            'first_name',
-            'last_name',
-            'birth_date',
+        'bhamashah',
             'aadhaar',
             'bhamashah',
             'contact',
@@ -104,4 +101,4 @@ class UsersRegisterForm(forms.ModelForm):
         return super(UsersRegisterForm, self).clean(*args, **keyargs)
 
 
-
+       

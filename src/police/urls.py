@@ -9,8 +9,8 @@ urlpatterns = [
 
 	url(r'^cbc/(?P<id>\d+)/$', cbcview , name='cbc'),
 	url(r'^cybercbc/(?P<id>\d+)/$', cybercbcview , name='cybercbc'),
-	
-	
+
+
 	url(r'^ajax/get_category/', get_case_categories, name = "get_categories"),
 	url(r'^person_detail/(?P<id>\d+)/$', person_detail_view, name='person_detail'),
 
@@ -23,4 +23,3 @@ urlpatterns = [
 
 
 ]
-

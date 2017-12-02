@@ -2,6 +2,14 @@ from django import forms
 from django.contrib.auth import authenticate
 
 from .models import AnonymousTip
+from home.models import Evidence
+from django.forms import ModelForm
+
+
+class EvidenceForm(ModelForm):
+    class Meta:
+        model = Evidence
+        fields = "__all__"
 
 
 class AnonymousTipForm(forms.ModelForm):
