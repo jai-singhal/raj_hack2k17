@@ -8,7 +8,6 @@ from home.models import Evidence
 from django.views import View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-
 def anonymous_tip(request):
     form = AnonymousTipForm(request.POST or None)
     if form.is_valid():

@@ -85,3 +85,24 @@ def register_view(request):
         login(request, new_user)
         return redirect("/citizen/dashboard")
     return render(request, "citizen/register.html",{"form" : form,})
+
+
+
+def create_case(request):
+    form=case_form(request.POST or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.save()
+        return redirect("/citizen/dashboard")
+    return render(request, "citizen/case.html",{"form" : form,})
+
+
+
+def create_cyber_case(request):
+    form=cyber_case_form(request.POST or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.save()
+        return redirect("/citizen/dashboard")
+    return render(request, "citizen/case.html",{"form" : form, 'cyber':True})
+

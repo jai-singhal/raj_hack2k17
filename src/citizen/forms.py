@@ -79,6 +79,7 @@ class UsersRegisterForm(forms.ModelForm):
 
         if email != confirm_email:
             raise forms.ValidationError("Email must match")
+
         if password != confirm_password:
             raise forms.ValidationError("Password must match")
 
