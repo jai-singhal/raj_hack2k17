@@ -9,14 +9,17 @@ urlpatterns = [
 
 	url(r'^cbc/(?P<id>\d+)/$', cbcview , name='cbc'),
 	url(r'^cybercbc/(?P<id>\d+)/$', cybercbcview , name='cybercbc'),
-	
-	
+
+
 	url(r'^ajax/get_category/', get_case_categories, name = "get_categories"),
 	url(r'^person_detail/(?P<id>\d+)/$', person_detail_view, name='person_detail'),
 
 	url(r'^case_detail/(?P<id>\d+)/(?P<approved>\d+)/$', case_detail , name='case_detail'),
 
+	url(r'^create_criminal_details/$', create_criminal_details , name='create_criminal_details'),
+
+	url(r'^atips/$', atips , name='atips'),
+	url(r'^atip_detail/(?P<id>\d+)/$', atip_detail, name='atip_detail'),
 
 
 ]
-

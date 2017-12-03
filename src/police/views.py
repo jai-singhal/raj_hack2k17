@@ -15,9 +15,9 @@ from django.contrib.auth import authenticate, login ,logout
 from case.models import CaseCategory, CyberCaseCategories,Case, Witness
 
 from citizen.models import Citizen
-from .forms import UsersLoginForm
+from .forms import UsersLoginForm,criminal_form
 
-
+from home.models import AnonymousTip
 
 def login_view(request):
 
@@ -53,12 +53,12 @@ def dashboard(request):
         raise Http404
 
     ward_object=request.user.ward
-    
+
     total_cases_count=Case.objects.all().count()
     approved_cases_count=Case.objects.filter(approved=True).count()
     solved_cases_count=Case.objects.filter(solved=True).count()
     pending_cases_count=total_cases_count-approved_cases_count
-    
+
     pqset=Police.objects.filter(ward=request.user.ward)
 
     desig={
@@ -135,6 +135,16 @@ def case_detail(request,id=None,approved=None):
     context={"my_object":my_object,"wqset":wqset, "ward_object": ward_object, "police_id": police_id, "comments": comments}
     return render(request,'police/case_detail.html',context)
 
+def atip_detail(request,id=None):
+    if not request.user.is_authenticated():
+        raise Http404
+    my_object = get_object_or_404(AnonymousTip, id=id)
+    
+    context={"my_object":my_object}
+    return render(request,'police/atip_detail.html',context)
+
+
+
 
 
 
@@ -154,3 +164,29 @@ def police_logout(request):
     logout(request)
 
     return redirect("/")
+
+
+
+def create_criminal_details(request):
+    form=criminal_form(request.POST or None)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.save()
+        return redirect("/police/criminal_directory")
+    return render(request, "police/cdform.html",{"form" : form,})
+
+
+
+
+
+
+
+
+
+def atips(request):
+    if not request.user.is_authenticated():
+        raise Http404
+    aqset = AnonymousTip.objects.all()
+    context={"aqset":aqset}
+    return render(request,'police/atips.html',context)
+

@@ -35,10 +35,7 @@ class UsersRegisterForm(forms.ModelForm):
     class Meta:
         model = Citizen
         fields = [
-            "username",
-            'first_name',
-            'last_name',
-            'birth_date',
+        'bhamashah',
             'aadhaar',
             'bhamashah',
             'contact',
@@ -87,6 +84,7 @@ class UsersRegisterForm(forms.ModelForm):
             raise forms.ValidationError("Password must match")
 
 
+
         email_qs = Citizen.objects.filter(email=email)
         if email_qs.exists():
             raise forms.ValidationError("Email is already registered")
@@ -104,4 +102,4 @@ class UsersRegisterForm(forms.ModelForm):
         return super(UsersRegisterForm, self).clean(*args, **keyargs)
 
 
-
+       

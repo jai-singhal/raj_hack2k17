@@ -1,4 +1,4 @@
-{% extends "police/base_site.html" %}
+{% extends "citizen/base_site.html" %}
 
 {% block title %} General Elements {% endblock title %}
 
@@ -14,7 +14,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>{{my_object.name}}</h3>
+
         </div>
 
         <div class="title_right">
@@ -49,10 +49,13 @@
                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                   <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Description</a>
                   </li>
-                  <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Location Filed</a>
+                  <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">category</a>
                   </li>
-                  <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">User Details</a>
+                  <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Ward Assosiated</a>
                   </li>
+
+
+
                 </ul>
                 <div id="myTabContent" class="tab-content">
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab" style="min-height: 60px;">
@@ -60,6 +63,9 @@
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                     <p>{{ obj.reg_from_loc }}</p>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                    <p>{{ obj.case_categories }} {{obj.cyber_case_categories}}</p>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                     <p>{{ obj.userid.get_full_name }} </p>
@@ -71,7 +77,7 @@
               <div class = "case-footer">
                 <div class = "col-sm-8 col-md-8 col-xs-4">
                   <p><b>Filed on:</b> {{obj.timestamp}} |
-                  <b>Incident on:</b> {{obj.incident_time}}</p>
+                  {% if obj.approved %}{% if obj.solved %}Solved {% else %} Approved{% endif %}{% else %}Pending{% endif %}</p>
                 </div>
               </div>
             </div>
@@ -83,16 +89,10 @@
 
 {% endfor %}
 
- </div> </div> </div> </div>
-    </div>
-    <div class="clearfix"></div>
-  </div>
+
 {% endblock content %}
 
 {% block javascripts %}
   {{ block.super }}
-  <!-- PNotify -->
-<!--   <script src="/static/vendors/pnotify/dist/pnotify.js"></script>
-  <script src="/static/vendors/pnotify/dist/pnotify.buttons.js"></script>
-  <script src="/static/vendors/pnotify/dist/pnotify.nonblock.js"></script> -->
+
 {% endblock javascripts %}
