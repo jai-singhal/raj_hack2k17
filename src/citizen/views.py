@@ -23,7 +23,7 @@ def login_view(request):
     return render(request, "citizen/login.html",{'form':form})
 
 def dashboard(request):
-    if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="Citizen":
+    if not request.user.is_authenticated() :
         raise Http404
     return render(request,'citizen/dashboard.html',{'citizen':request.user})
 
@@ -34,11 +34,12 @@ def citizen_logout(request):
     return redirect("/")
 
 def create_case(request):
-    form = CaseForm(request.POST or None)
+    form = case_form(request.POST or None)
     if form.is_valid():
-        form.save()
+        instance=form.save(commit=False)
+        instance.save()
         return redirect("/citizen/dashboard")
-    return render(request, "/citizen/case.html", {"form": form})
+    return render(request, "citizen/case.html", {"form": form})
 
 
 def cbcview(request):

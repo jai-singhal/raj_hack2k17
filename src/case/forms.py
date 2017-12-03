@@ -1,26 +1,26 @@
 from django import forms
 from .models import Case
 
-ward_choice = (
-('RJ14W01','Mansarovar'),
-('RJ14W02','Jagatpura'),
-('RJ14W03','Sanganer'),
-('RJ14W04','Kachi Basti'),
-('RJ14W05','Malviya Nagar'),
-('RJ14W06','Bani Park'),
-('RJ14W07','Sitapura'),
-('RJ14W08','Raja Park'),
-('RJ14W09','Triveni Nagar'),
-('RJ14W10','Badi Chopat'),
-('RJ14W11','Chandpole'),
+# ward_choice = (
+# ('RJ14W01','Mansarovar'),
+# ('RJ14W02','Jagatpura'),
+# ('RJ14W03','Sanganer'),
+# ('RJ14W04','Kachi Basti'),
+# ('RJ14W05','Malviya Nagar'),
+# ('RJ14W06','Bani Park'),
+# ('RJ14W07','Sitapura'),
+# ('RJ14W08','Raja Park'),
+# ('RJ14W09','Triveni Nagar'),
+# ('RJ14W10','Badi Chopat'),
+# ('RJ14W11','Chandpole'),
 
-)
+# )
 
 
 
 
 class case_form(forms.ModelForm):
-    ward_id=forms.ChoiceField(ward_choice)
+    # ward_id=forms.ChoiceField(ward_choice)
     incident_time=forms.DateField(widget=forms.SelectDateWidget)
     class Meta:
         model=Case
@@ -52,7 +52,7 @@ class case_form(forms.ModelForm):
 
 
 class cyber_case_form(forms.ModelForm):
-    ward_id=forms.ChoiceField(ward_choice)
+    # ward_id=forms.ChoiceField(ward_choice)
     incident_time=forms.DateField(widget=forms.SelectDateWidget)
     class Meta:
         model=Case
