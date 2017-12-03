@@ -14,7 +14,6 @@ def login_view(request):
     if  str(request.user.__class__.__name__)=="Citizen":
         return redirect('/citizen/dashboard')
 
-
     form = UsersLoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data.get("username")
@@ -25,7 +24,8 @@ def login_view(request):
     return render(request, "citizen/login.html",{'form':form})
 
 def dashboard(request):
-    if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="Citizen":
+    print(request.user.__class__.__name__)
+    if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="User":
         raise Http404
     return render(request,'citizen/dashboard.html',{'citizen':request.user})
 
@@ -52,7 +52,6 @@ def register_view(request):
 
 
 
-
 def create_case(request):
     form=case_form(request.POST or None)
     if form.is_valid():
@@ -69,4 +68,4 @@ def create_cyber_case(request):
         instance=form.save(commit=False)
         instance.save()
         return redirect("/citizen/dashboard")
-    return render(request, "citizen/case.html",{"form" : form,})
+    return render(request, "citizen/case.html",{"form" : form, 'cyber':True})

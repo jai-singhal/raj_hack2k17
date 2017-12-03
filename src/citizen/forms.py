@@ -81,9 +81,10 @@ class UsersRegisterForm(forms.ModelForm):
         bhamashah = self.cleaned_data.get("bhamashah")
 
         if email != confirm_email:
+            raise forms.ValidationError("Email must match")
+
         if password != confirm_password:
             raise forms.ValidationError("Password must match")
-            raise forms.ValidationError("Email must match")
 
 
         email_qs = Citizen.objects.filter(email=email)

@@ -3,7 +3,6 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from .forms import AnonymousTipForm, AnonymousUsersLoginForm
 
-
 def anonymous_tip(request):
     form = AnonymousTipForm(request.POST or None)
     if form.is_valid():

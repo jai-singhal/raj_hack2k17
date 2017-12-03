@@ -17,7 +17,14 @@
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <h1>File FIR</h1>
+          {% if cyber %}
+          <h3>CYBER CRIME REPORT</h3>
+
+            <div class="separator"></div>
+          {% else %}
+
+          <h3 style="margin-top:-25px;">File FIR</h3>
+          {% endif %}
           <form method="POST"  enctype="multipart/form-data">
               {% csrf_token %}
           {{form.as_p}}
