@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "citizen",
     "police",
     "comment",
-    'home'
+    'home',
 ]
 
 MIDDLEWARE = [
