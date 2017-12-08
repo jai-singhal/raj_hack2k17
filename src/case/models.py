@@ -3,8 +3,10 @@ from django.urls import reverse
 from citizen.models import Citizen
 from police.models import Ward
 
+
 def evidence_upload_location(instance,filename):
     return '%s/%s/%s' % (instance.case.id, '/%Y/%m/%d/', filename)
+
 
 class CaseCategory(models.Model):
     name = models.CharField(max_length=80, blank=False)

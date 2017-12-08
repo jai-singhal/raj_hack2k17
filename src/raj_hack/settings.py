@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     "police",
     "comment",
     'home',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

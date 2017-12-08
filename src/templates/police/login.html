@@ -1,5 +1,5 @@
 {% extends "police/base_site.html" %}
-
+{% load crispy_forms_tags %}
 {% block title %} Login {% endblock title %}
 
 {% block stylesheets %}
@@ -21,7 +21,7 @@
 
           <form method="POST"  enctype="multipart/form-data">
               {% csrf_token %}
-              {{form.as_p}}
+              {{form | crispy }}
               <!-- <input type="text" name='username' class="form-control" placeholder="Username" required />
 
               <input type="password" name='password' class="form-control" placeholder="Password" required /> -->
