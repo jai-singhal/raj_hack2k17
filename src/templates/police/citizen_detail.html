@@ -43,7 +43,11 @@
           </div> -->
         </div>
         <div class="panel-body">
+    {% if detail_flag %}
+
       <div class="clearfix">
+
+
   <label for="label">Family Id No: </label> {{data.FAMILYIDNO }}<br/>
   <label for="label">Aadhar Card Id: </label> {{data.AADHAR_ID}}<br/>
   <label for="label">BHAMASHAH ID: </label> {{data.BHAMASHAH_ID}}<br/>  
@@ -102,12 +106,33 @@
   <label for="label">M ID: </label> {{data.M_ID}}<br/>
   <label for="label">IS RURAL: </label> {{data.IS_RURAL}}<br/>
 </div>
+
+{% else %}
+
+ <div class="clearfix">
+  No Additional Details Found !!  
+
+        </div>  
+      <hr/>
+
+      {% endif %}
+
 </div>
 </div>
 </div>
+
+{% if photo_flag %}
 <div class="col-md-2">
 <img src="data:image/png;base64,{{d64}}"/>
 </div>
+{% else %}
+<div class="col-md-2">
+Image
+</div>
+{% endif %}
+
+
+
 </div>
 </div>
 

@@ -156,34 +156,43 @@ def person_detail_view(request,id=None):
 
     user = get_object_or_404(Citizen,id=id)
     b_id = user.bhamashah
-
-    # try:
-
-
-    string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofAndMember/ForApp/%s?client_id=%s" % (str(b_id),config('client_id'))   
-    with urllib.request.urlopen(string) as url:
-        data=json.loads(url.read().decode())
-    data=data['hof_Details']
+    photo_flag=1
+    detail_flag=1
+    d64={}
 
 
-    string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofMembphoto/%s/%s?client_id=%s" % (str(data['BHAMASHAH_ID']),str(data['M_ID']),config('client_id'))  
-    with urllib.request.urlopen(string) as url:
-        d64=json.loads(url.read().decode())
+    try:
+
+        string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofAndMember/ForApp/%s?client_id=%s" % (str(b_id),config('client_id'))   
+        with urllib.request.urlopen(string) as url:
+            data=json.loads(url.read().decode())
+        data=data['hof_Details']
+    except:
+        detail_flag=0
 
 
-    print(data)
+    try:
+
+        string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofMembphoto/%s/%s?client_id=%s" % (str(data['BHAMASHAH_ID']),str(data['M_ID']),config('client_id'))  
+        with urllib.request.urlopen(string) as url:
+            d64=json.loads(url.read().decode())
+        d64=d64["hof_Photo"]["PHOTO"]
+    except:
+        photo_flag=0
+
+
+
 
     context={
 
         "data":data,
-        "d64":d64["hof_Photo"]["PHOTO"]
+        "d64":d64,
+        "detail_flag":detail_flag,
+        "photo_flag":photo_flag
+
 
     }
   
-
-    # except:
-    #     print()
-    #     raise Http404
 
 
 
