@@ -101,7 +101,8 @@ def cbcview(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
     my_object = get_object_or_404(CaseCategory, pk=id)
-    cases_qset=Case.objects.filter(case_categories=my_object , ward_id=request.user.ward)
+
+    cases_qset=Case.objects.filter(case_categories=my_object )
 
     context={"my_object":my_object,"cases_qset":cases_qset}
     return render(request,'police/cases_by_cat.html',context)
@@ -111,7 +112,7 @@ def cybercbcview(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
     my_cyber_object = get_object_or_404(CyberCaseCategories, pk=id)
-    cyber_cases_qset=Case.objects.filter(cyber_case_categories=my_cyber_object , ward_id=request.user.ward)
+    cyber_cases_qset=Case.objects.filter(cyber_case_categories=my_cyber_object )
 
     context={"my_object":my_cyber_object,"cases_qset":cyber_cases_qset}
     return render(request,'police/cases_by_cat.html',context)
