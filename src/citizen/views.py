@@ -47,7 +47,7 @@ def cbcview(request):
         raise Http404
     my_object = get_object_or_404(Citizen, pk=request.user.id)
     cases_qset=Case.objects.filter(userid=my_object)
-
+    print(cases_qset)
     context={"my_object":my_object,"cases_qset":cases_qset}
     return render(request,'citizen/case_by_cat.html',context)
 

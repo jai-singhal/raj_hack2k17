@@ -2,8 +2,8 @@ from django.http import Http404
 from django.shortcuts import render,get_object_or_404
 from case.models import *
 from .models import *
+import urllib.request, json 
 
-import json
 from django.core.serializers import serialize
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 
@@ -18,6 +18,8 @@ from citizen.models import Citizen
 from .forms import UsersLoginForm,criminal_form
 
 from home.models import AnonymousTip
+
+from decouple import config
 
 def login_view(request):
 
@@ -101,7 +103,8 @@ def cbcview(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
     my_object = get_object_or_404(CaseCategory, pk=id)
-    cases_qset=Case.objects.filter(case_categories=my_object)
+    cases_qset=Case.objects.filter(case_categories=my_object )
+
 
     context={"my_object":my_object,"cases_qset":cases_qset}
     return render(request,'police/cases_by_cat.html',context)
@@ -111,6 +114,7 @@ def cybercbcview(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
     my_cyber_object = get_object_or_404(CyberCaseCategories, pk=id)
+    cyber_cases_qset=Case.objects.filter(cyber_case_categories=my_cyber_object )
     cyber_cases_qset=Case.objects.filter(cyber_case_categories=my_cyber_object)
 
     context={"my_object":my_cyber_object,"cases_qset":cyber_cases_qset}
@@ -146,16 +150,46 @@ def atip_detail(request,id=None):
 
 
 
-
-
 def person_detail_view(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
 
     user = get_object_or_404(Citizen,id=id)
-    aadhaar_id = user.aadhaar
+    b_id = user.bhamashah
 
-    context={}
+    # try:
+
+
+    string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofAndMember/ForApp/%s?client_id=%s" % (str(b_id),config('client_id'))   
+    with urllib.request.urlopen(string) as url:
+        data=json.loads(url.read().decode())
+    data=data['hof_Details']
+
+
+    string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofMembphoto/%s/%s?client_id=%s" % (str(data['BHAMASHAH_ID']),str(data['M_ID']),config('client_id'))  
+    with urllib.request.urlopen(string) as url:
+        d64=json.loads(url.read().decode())
+
+
+    print(data)
+
+    context={
+
+        "data":data,
+        "d64":d64["hof_Photo"]["PHOTO"]
+
+    }
+  
+
+    # except:
+    #     print()
+    #     raise Http404
+
+
+
+
+
+
     return render(request,'police/citizen_detail.html',context)
 
 
