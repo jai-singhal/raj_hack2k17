@@ -1,5 +1,5 @@
 {% extends "police/base_site.html" %}
-
+{% load get_last %}
 {% block title %} Inbox {% endblock title %}
 
 {% block stylesheets %}
@@ -64,9 +64,7 @@
 
                          </ul>
                       </div>
-                       <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i><a href="{{my_object.userid.get_absolute_url }}">Get Full Details</a></button>
-
-
+                      <a href="{{ my_object.userid.get_absolute_url }}"> <button class="btn btn-sm btn-default" type="button"  ><i class="fa fa-share"></i>Get Full Detail</button></a>
                     </div>
                   </a>
                   <hr>
@@ -141,58 +139,26 @@
                     <div class="attachment">
                       <p>
                         Evidences <hr>
-                        <span><i class="fa fa-paperclip"></i> 3 attachments — </span>
-                        <a href="#">Download all attachments</a> |
-                        <a href="#">View all images</a>
                       </p>
                       <ul>
-                        <li>
-                          <a href="#" class="atch-thumb">
-                            <img src="/static/images/inbox.png" alt="img" />
-                          </a>
-
-                          <div class="file-name">
-                            image-name.jpg
-                          </div>
-                          <span>12KB</span>
 
 
-                          <div class="links">
-                            <a href="#">View</a> -
-                            <a href="#">Download</a>
-                          </div>
-                        </li>
+                {% for i in files %}
+                <li>
+                  <div class="file-name">
+                  {{ i.evidence.name | get_last }}
+                  </div>
+                  <span>{{ i.evidence.size }}</span>
+                  <a href="{{ i.evidence.url}}" class="atch-thumb">
+                  <img src="{{ i.evidence.url}}"alt="{ i.evidence.name | get_last }}" />
+                  </a>
+                  <div class="links">
+                  <a href="{{ i.evidence.url}}">View</a> -
+                  </div>
+                </li>
+                {% endfor %}
 
-                        <li>
-                          <a href="#" class="atch-thumb">
-                            <img src="/static/images/inbox.png" alt="img" />
-                          </a>
 
-                          <div class="file-name">
-                            img_name.jpg
-                          </div>
-                          <span>40KB</span>
-
-                          <div class="links">
-                            <a href="#">View</a> -
-                            <a href="#">Download</a>
-                          </div>
-                        </li>
-                        <li>
-                          <a href="#" class="atch-thumb">
-                            <img src="/static/images/inbox.png" alt="img" />
-                          </a>
-
-                          <div class="file-name">
-                            img_name.jpg
-                          </div>
-                          <span>30KB</span>
-
-                          <div class="links">
-                            <a href="#">View</a> -
-                            <a href="#">Download</a>
-                          </div>
-                        </li>
 
                       </ul>
                     </div>

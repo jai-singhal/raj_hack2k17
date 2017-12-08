@@ -136,7 +136,9 @@ def case_detail(request,id=None,approved=None):
     wqset=Witness.objects.filter(case=my_object)
     ward_object=request.user.ward
     police_id = request.user.id
-    context={"my_object":my_object,"wqset":wqset, "ward_object": ward_object, "police_id": police_id, "comments": comments}
+    files = my_object.evidence_set.all()
+    print(files)
+    context={"my_object":my_object,"wqset":wqset, "ward_object": ward_object, "police_id": police_id, "comments": comments,'files':files}
     return render(request,'police/case_detail.html',context)
 
 def atip_detail(request,id=None):
@@ -146,6 +148,16 @@ def atip_detail(request,id=None):
     
     context={"my_object":my_object}
     return render(request,'police/atip_detail.html',context)
+
+def b(b_id):
+    try:
+        string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofAndMember/ForApp/%s?client_id=%s" % (str(b_id),config('client_id'))
+        with urllib.request.urlopen(string) as url:
+            data=json.loads(url.read().decode())
+        data=data['hof_Details']
+        return data
+    except:
+        return None
 
 
 
@@ -159,15 +171,12 @@ def person_detail_view(request,id=None):
     photo_flag=1
     detail_flag=1
     d64={}
+    data={}
+ 
+    data = b(b_id)
+    print(data)
 
-
-    try:
-
-        string="https://apitest.sewadwaar.rajasthan.gov.in/app/live/Service/hofAndMember/ForApp/%s?client_id=%s" % (str(b_id),config('client_id'))   
-        with urllib.request.urlopen(string) as url:
-            data=json.loads(url.read().decode())
-        data=data['hof_Details']
-    except:
+    if data is None:
         detail_flag=0
 
 

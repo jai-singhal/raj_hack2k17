@@ -2,9 +2,14 @@ from django.db import models
 from django.urls import reverse
 from citizen.models import Citizen
 from police.models import Ward
+import datetime
+
+t = datetime.datetime.now()
+t = str(t.year) + '/' + str(t.month) + '/' + str(t.day)
+
 
 def evidence_upload_location(instance,filename):
-    return '%s/%s/%s' % (instance.case.id, '/%Y/%m/%d/', filename)
+    return '%s/%s/%s' % ( t ,  instance.case.id, filename)
 
 class CaseCategory(models.Model):
     name = models.CharField(max_length=80, blank=False)
