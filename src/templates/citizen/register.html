@@ -1,5 +1,5 @@
 {% extends "police/base_site.html" %}
-
+{% load crispy_forms_tags %}
 {% block title %} Login {% endblock title %}
 
 {% block stylesheets %}
@@ -23,10 +23,10 @@
           <form method="POST"  enctype="multipart/form-data">
               {% csrf_token %}
 
-              {{form.as_p}}
+              {{form | crispy }}
 
 
-                <input class="btn btn-default submit" type="submit" value="Register">
+                <input class="btn btn-danger submit" type="submit" value="Register">
 
           </form>
             <div class="clearfix"></div>

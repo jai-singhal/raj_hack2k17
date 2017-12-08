@@ -6,7 +6,8 @@ from comment.views import HomePage, CommentPage
 from home.views import criminal_directory
 from home.views import upload_evidence
 from django.views.generic import TemplateView
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -22,3 +23,6 @@ urlpatterns = [
     url(r'^$', HomePage, name = "HomePage")
 
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
