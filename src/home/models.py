@@ -10,7 +10,6 @@ t = str(t.year) + '/' + str(t.month) + '/' + str(t.day)
 def evidence_upload_location(instance,filename):
     return 'anonymous/%s/%s/%s' % ( t ,  instance.anonymous_tip.id, filename)
 
-
 class AnonymousUser(User):
     pass
 
@@ -45,7 +44,6 @@ class Evidence(models.Model):
         doc =  models.FileField(upload_to=evidence_upload_location, blank = True)
         video =  models.FileField(upload_to=evidence_upload_location, blank = True)
         anonymous_tip = models.ForeignKey(AnonymousTip,null=True,blank=True)
-
 
         def __str__(self):
             return str(self.id)

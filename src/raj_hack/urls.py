@@ -9,7 +9,6 @@ from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^about$', TemplateView.as_view(template_name="about.html")),
@@ -21,6 +20,7 @@ urlpatterns = [
     url(r'comment/', CommentPage, name = "comment"),
     url(r'^criminal_directory/', criminal_directory, name = "criminal_directory"),
     url(r'evidence/(?P<id>\d+)/upload', upload_evidence, name = "upload_anonymous_evidence"),
+
     url(r'^$', HomePage, name = "HomePage")
 
 ]

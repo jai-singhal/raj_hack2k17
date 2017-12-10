@@ -84,6 +84,10 @@ class Contact(models.Model):
         return self.ward
 
 
+
+
+
+
 class Criminal(models.Model):
     name = models.CharField(max_length=255, blank=False)
     father_name = models.CharField(max_length=255)

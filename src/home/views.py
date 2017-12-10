@@ -43,6 +43,7 @@ def upload_evidence(request,id=None):
     return render(request, "anonymous/evidence.html", {"form": form, 'username':username, 'password':password})
 
 
+
 def anonymous_tip(request):
     form = AnonymousTipForm(request.POST or None)
     if form.is_valid():
@@ -68,6 +69,7 @@ def anonymous_tip(request):
         else:
             return redirect(reverse('upload_anonymous_evidence', kwargs={'id': instance.pk}))
     return render(request,'anonymous/tip.html',{'form':form})
+
 
 
 def get_interact_anonymous(request):
@@ -105,4 +107,3 @@ def criminal_directory(request):
     if search_query:
         var = var.filter(name__contains=search_query)
     return render(request, "criminal_directory.html",{'var':var})
-

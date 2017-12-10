@@ -229,8 +229,6 @@ def create_criminal_details(request):
 
 
 
-
-
 def atips(request):
     if not request.user.is_authenticated():
         raise Http404
