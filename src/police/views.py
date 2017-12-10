@@ -72,6 +72,9 @@ def dashboard(request):
         cvqset[i.name]=Case.objects.filter(case_categories=i).count()
         cvsum=cvsum+cvqset[i.name]
 
+    cvsolved=Case.objects.filter(cyber_case_categories=None,solved=True).count()
+    cysolved=Case.objects.filter(case_categories=None,solved=True).count()
+    
     cyqset={}
     cysum=0
     d=CyberCaseCategories.objects.all()
@@ -113,6 +116,10 @@ def dashboard(request):
     "ward_object":ward_object,
     "cvqset":cvqset,
     "cyqset":cyqset,
+    "cvsum":cvsum,
+    "cysum":cysum,
+    "cvsolved":cvsolved,
+    "cysolved":cysolved,
     
 
 
