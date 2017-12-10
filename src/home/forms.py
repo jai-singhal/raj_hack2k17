@@ -10,6 +10,7 @@ class EvidenceForm(ModelForm):
     class Meta:
         model = Evidence
         fields = "__all__"
+        exclude = ['anonymous_tip']
 
 
 class AnonymousTipForm(forms.ModelForm):

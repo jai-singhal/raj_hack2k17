@@ -1,5 +1,7 @@
 {% extends "police/base_site.html" %}
 {% block title %} Login {% endblock title %}
+{% load crispy_forms_tags %}
+
 
 {% block stylesheets %}
   {{ block.super }}
@@ -10,15 +12,20 @@
 {% block body_class %}login{% endblock body_class %}
 
 {% block body %}
-  <div>
+
+{% if username %}
+    {% include 'anonymous/get_cred.html' %}
+{% endif %}
+
+<div>
     <a class="hiddenanchor" id="signin"></a>
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
           <h1 style="margin-top:-25px;">Upload Evidence</h1></section>
 
-          <form method = "POST">{% csrf_token %}
-            {{form.as_p}}
+          <form method = "POST" enctype="multipart/form-data">{% csrf_token %}
+            {{form | crispy }}
             <input type = "submit" value = "Submit">
           </form>
               <div>

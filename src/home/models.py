@@ -1,18 +1,14 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+import datetime
 
-def image_upload_location(instance, filename):
-    return '%s/%s/%s' % ("abc", 'evidence_images/%Y/%m/%d/', "filename")
+t = datetime.datetime.now()
+t = str(t.year) + '/' + str(t.month) + '/' + str(t.day)
 
-def video_upload_location(instance,filename):
-    return '%s/%s/%s' % (instance.id, 'evidence_videos/%Y/%m/%d/', filename)
 
-def doc_upload_location(instance,filename):
-    return '%s/%s/%s' % (instance.id, 'evidence_docs/%Y/%m/%d/', filename)
-
-def audio_upload_location(instance,filename):
-    return '%s/%s/%s' % (instance.id, 'evidence_audios/%Y/%m/%d/', filename)
+def evidence_upload_location(instance,filename):
+    return 'anonymous/%s/%s/%s' % ( t ,  instance.anonymous_tip.id, filename)
 
 class AnonymousUser(User):
     pass
@@ -32,6 +28,7 @@ class AnonymousTip(models.Model):
     incident_time = models.DateField()
     updated = models.DateTimeField(auto_now=True)
     upload_evidence = models.BooleanField(blank = True)
+    stay_in_touch = models.BooleanField(blank = True)
 
     def __str__(self):
         return self.title
@@ -42,11 +39,11 @@ class AnonymousTip(models.Model):
     
 
 class Evidence(models.Model):
-        image1 = models.ImageField(upload_to=image_upload_location, blank = True)
-        image2 =  models.ImageField(upload_to=image_upload_location, blank = True)
-        doc =  models.FileField(upload_to=doc_upload_location, blank = True)
-        video =  models.FileField(upload_to=doc_upload_location, blank = True)
-        stay_in_touch = models.BooleanField()
+        image1 = models.ImageField(upload_to=evidence_upload_location, blank = True)
+        image2 =  models.ImageField(upload_to=evidence_upload_location, blank = True)
+        doc =  models.FileField(upload_to=evidence_upload_location, blank = True)
+        video =  models.FileField(upload_to=evidence_upload_location, blank = True)
+        anonymous_tip = models.ForeignKey(AnonymousTip,null=True,blank=True)
 
         def __str__(self):
             return str(self.id)

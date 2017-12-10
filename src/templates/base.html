@@ -22,6 +22,7 @@
     </style>
     <body>
 
+        {% include 'message_display.html' %}
       <div class = "top_header" style="background-color: black;">
     <div class = "container" style="height:45px;">
       <div class = "row">
@@ -71,6 +72,7 @@
           <li class="dropdown"><a href="/anonymous/">Anonymous Tip</a></li>
           <li class="dropdown"><a href="/about">About Us</a></li>
           <li class="dropdown"><a href="/contact">Contact Us</a></li>
+            {% block nav_item %} {% endblock %}
         </ul>
       </div>
     </div>
