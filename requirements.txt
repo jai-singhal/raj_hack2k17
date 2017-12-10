@@ -1,7 +1,7 @@
 Django==1.11.7
-django-braces==1.11.0
+django-crispy-forms==1.7.0
 django-model-utils==3.0.0
-packaging==16.8
-pyparsing==2.2.0
-six==1.11.0
-
+olefile==0.44
+Pillow==4.3.0
+python-decouple==3.1
+pytz==2017.3
