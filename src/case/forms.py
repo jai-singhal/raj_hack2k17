@@ -25,7 +25,7 @@ class case_form(forms.ModelForm):
     class Meta:
         model=Case
         fields="__all__"
-        exclude = ['cyber_case_categories','userid','approved','updated','timestamp','solved']
+        exclude = ['cyber_case_categories','approved','updated','timestamp','solved']
 
     def __init__(self, *args, **kwargs):
         super(case_form, self).__init__(*args, **kwargs)
@@ -57,7 +57,7 @@ class cyber_case_form(forms.ModelForm):
     class Meta:
         model=Case
         fields="__all__"
-        exclude = ['case_categories','userid','approved','updated','timestamp','solved']
+        exclude = ['case_categories','approved','updated','timestamp','solved']
 
     def __init__(self, *args, **kwargs):
         super(cyber_case_form, self).__init__(*args, **kwargs)

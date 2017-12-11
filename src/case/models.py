@@ -46,6 +46,8 @@ class Witness(models.Model):
     bahmashah_id=models.CharField(max_length=20, blank=True)
     contact=models.CharField(max_length=20, blank=False)
     case = models.ForeignKey('Case', null=True)
+    def get_absolute_url(self):
+        return reverse("person_detail",kwargs={"id":self.bahmashah_id})    
 
 
 class Case(models.Model):

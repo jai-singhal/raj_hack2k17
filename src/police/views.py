@@ -272,8 +272,9 @@ def person_detail_view(request,id=None):
     if not request.user.is_authenticated():
         raise Http404
 
-    user = get_object_or_404(Citizen,id=id)
-    b_id = user.bhamashah
+    # user = get_object_or_404(Citizen,id=id)
+    # b_id = user.bhamashah
+    b_id=id
     photo_flag=1
     detail_flag=1
     d64={}
