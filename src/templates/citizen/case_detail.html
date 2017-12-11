@@ -1,12 +1,18 @@
-{% extends "police/base_site.html" %}
-
-{% block title %} Inbox {% endblock title %}
+{% extends "citizen/base_site.html" %}
+{% load get_last %}
+{% block title %} Case Detail {% endblock title %}
+{% load static %}
 
 {% block stylesheets %}
   {{ block.super }}
     <!-- bootstrap-wysiwyg -->
     <link href="/static/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+     <link href='{% static "css/table.css" %}' rel="stylesheet">
+
 {% endblock stylesheets %}
+
+
+
 
 {% block content %}
   <div class="right_col" role="main">
@@ -58,15 +64,13 @@
                         <li><p><span class="badge">Email :</span> {{ my_object.userid.email }}</p> </li>
                         <li><p><span class="badge">Contact :</span> {{ my_object.userid.contact }}</p> </li>
 
-                        <li><p><span class="badge">Aadhaar Id :</span> {{ my_object.userid.aadhar }}</p> </li>
-<li><p><span class="badge">Bamashah Id :</span> {{ my_object.userid.bhamshah }}</p> </li>
+                        <li><p><span class="badge">Aadhaar Id :</span> {{ my_object.userid.aadhaar }}</p> </li>
+<li><p><span class="badge">Bamashah Id :</span> {{ my_object.userid.bhamashah }}</p> </li>
                         <li><p><span class="badge">Last Active :</span> {{ my_object.userid.last_login }}</p> </li>
 
                          </ul>
                       </div>
-                       <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i><a href="{{my_object.userid.get_absolute_url }}">Get Full Details</a></button>
-
-
+                      <a href="{{ my_object.userid.get_absolute_url }}"> <button class="btn btn-sm btn-default" type="button"  ><i class="fa fa-share"></i>Get Full Detail</button></a>
                     </div>
                   </a>
                   <hr>
@@ -104,16 +108,35 @@
                 <!-- CONTENT MAIL -->
                 <div class="col-sm-9 mail_view">
                   <div class="inbox-body">
+                    
+
                     <div class="mail_heading row">
                       <div class="col-md-8">
                         <div class="btn-group">
                           {% if my_object.approved %}
 
-                          <button class="btn btn-sm btn-danger" type="button"><i class="fa fa-star"></i> Approved</button>
+                          {% if my_object.solved %}
+
+                                                    
+
+                          <button class="btn btn-sm btn-success" type="button"><i class="fa fa-check"></i> Solved</button>
+                          
                           {% else %}
-                          <a href="/police/case_detail/{{my_object.id}}/1/"><button class="btn btn-sm btn-primary" type="button"><i class="fa fa-check"></i> Approve</button></a>
+                          
+                          <button class="btn btn-sm btn-info" type="button"><i class="fa fa-star"></i>Approved and Investigation in Progress</button>
+                          
                           {% endif %}
-                          <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Comment"><i class="fa fa-comments-o"></i></button>
+
+
+                          {% else %}
+                          <button class="btn btn-sm btn-danger" type="button"><i class="fa fa-clock-o"></i> Pending for approval</button>
+                          
+
+                          {% endif %}
+
+
+                          <a href="#comments">
+                          <button class="btn btn-sm btn-default" type="button"  data-placement="top" data-toggle="tooltip" data-original-title="Comment"><i class="fa fa-comments-o"></i></button></a>
 
                         </div>
                       </div>
@@ -124,6 +147,10 @@
                         <h4> {{ my_object.title }}</h4>
                       </div>
                     </div>
+
+
+
+                    
                     <!-- <div class="sender-info">
                       <div class="row">
                         <div class="col-md-12">
@@ -141,61 +168,95 @@
                     <div class="attachment">
                       <p>
                         Evidences <hr>
-                        <span><i class="fa fa-paperclip"></i> 3 attachments — </span>
-                        <a href="#">Download all attachments</a> |
-                        <a href="#">View all images</a>
                       </p>
-                      <ul>
-                        <li>
-                          <a href="#" class="atch-thumb">
-                            <img src="/static/images/inbox.png" alt="img" />
-                          </a>
-
-                          <div class="file-name">
-                            image-name.jpg
-                          </div>
-                          <span>12KB</span>
+                     <!--  <ul> -->
 
 
-                          <div class="links">
-                            <a href="#">View</a> -
-                            <a href="#">Download</a>
-                          </div>
-                        </li>
 
-                        <li>
-                          <a href="#" class="atch-thumb">
-                            <img src="/static/images/inbox.png" alt="img" />
-                          </a>
 
-                          <div class="file-name">
-                            img_name.jpg
-                          </div>
-                          <span>40KB</span>
 
-                          <div class="links">
-                            <a href="#">View</a> -
-                            <a href="#">Download</a>
-                          </div>
-                        </li>
-                        <li>
-                          <a href="#" class="atch-thumb">
-                            <img src="/static/images/inbox.png" alt="img" />
-                          </a>
 
-                          <div class="file-name">
-                            img_name.jpg
-                          </div>
-                          <span>30KB</span>
 
-                          <div class="links">
-                            <a href="#">View</a> -
-                            <a href="#">Download</a>
-                          </div>
-                        </li>
+<button onclick="imgfun('imgchevron')" class='btn btn-sm btn-info' data-toggle="collapse" data-target="#imglist">Images <i id="imgchevron" class="fa fa-chevron-down"></i></button>
 
-                      </ul>
-                    </div>
+
+<div class="list-group  collapse" id='imglist'>
+{% for obj,v in imglist.items %}
+
+<a href="{{v}}" class="list-group-item list-group-item-success">{{obj}}</a>
+
+
+{% endfor %}
+
+</div>
+
+
+
+
+<button onclick="imgfun('audchevron')" class='btn btn-sm btn-primary' data-toggle="collapse" data-target="#audlist">Audios <i id="audchevron" class="fa fa-chevron-down"></i></button>
+
+
+<div class="list-group  collapse" id='audlist'>
+{% for obj,v in audlist.items %}
+<a href="{{v}}" class="list-group-item list-group-item-success">{{obj}}</a>
+{% endfor %}
+</div>
+
+
+
+
+<button onclick="imgfun('vidchevron')" class='btn btn-sm btn-danger' data-toggle="collapse" data-target="#vidlist">Videos <i id="vidchevron" class="fa fa-chevron-down"></i></button>
+
+
+<div class="list-group  collapse" id='vidlist'>
+{% for obj,v in vidlist.items %}
+<a href="{{v}}" class="list-group-item list-group-item-success">{{obj}}</a>
+{% endfor %}
+</div>
+
+
+
+
+<button onclick="imgfun('docuchevron')" class='btn btn-sm btn-success' data-toggle="collapse" data-target="#doclist">Documents <i id="docuchevron" class="fa fa-chevron-down"></i></button>
+
+
+<div class="list-group  collapse" id='doclist'>
+{% for obj,v in doculist.items %}
+<a href="{{v}}" class="list-group-item list-group-item-success">{{obj}}</a>
+{% endfor %}
+</div>
+
+
+<button onclick="imgfun('otherschevron')" class='btn btn-sm btn-warning' data-toggle="collapse" data-target="#others">Others <i id="otherschevron" class="fa fa-chevron-down"></i></button>
+<div class="list-group  collapse" id='others'>
+{% for obj,v in others.items %}
+<a href="{{v}}" class="list-group-item list-group-item-success">{{obj}}</a>
+{% endfor %}
+</div>
+
+
+
+
+<!-- 
+                {% for i in files %}
+                <li>
+                  <div class="file-name">
+                  {{ i.evidence.name | get_last }}
+                  </div>
+                  <span>{{ i.evidence.size }}</span>
+                  <a href="{{ i.evidence.url}}" class="atch-thumb">
+                  <img src="{{ i.evidence.url}}"alt="{{ i.evidence.name | get_last }}" />
+                  </a>
+                  <div class="links">
+                  <a href="{{ i.evidence.url}}">View</a> -
+                  </div>
+                </li>
+                {% endfor %}
+
+
+ -->
+                   <!--    </ul>
+                    --> </div>
 
                   </div>
 
@@ -312,4 +373,42 @@
 
 
   {{ block.super }}
+<script type="text/javascript">
+  
+function scrollToElement(ref)
+{
+
+  document.getElementByClass(ref).scrollIntoView();
+}
+
+
+
+function imgfun(id)
+{
+      
+if ( document.getElementById(id).classList.contains('fa-chevron-down') )
+ {
+     document.getElementById(id).classList.remove('fa-chevron-down');
+
+     document.getElementById(id).classList.add('fa-chevron-up');
+
+
+ } 
+
+else if ( document.getElementById(id).classList.contains('fa-chevron-up') )
+
+{
+       document.getElementById(id).classList.remove('fa-chevron-up');
+
+       document.getElementById(id).classList.add('fa-chevron-down');
+
+
+}
+  
+
+
+}
+
+</script>
+  
 {% endblock javascripts %}

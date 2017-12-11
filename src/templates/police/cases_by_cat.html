@@ -46,22 +46,22 @@
 
 
               <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                  <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Description</a>
+                <ul id="myTab-{{forloop.counter}}" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#tab_content1-{{forloop.counter}}" id="home-tab-{{forloop.counter}}" role="tab" data-toggle="tab" aria-expanded="true">Description</a>
                   </li>
-                  <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Location Filed</a>
+                  <li role="presentation" class=""><a href="#tab_content2-{{forloop.counter}}" role="tab" id="profile-tab-{{forloop.counter}}" data-toggle="tab" aria-expanded="false">Location Filed</a>
                   </li>
-                  <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">User Details</a>
+                  <li role="presentation" class=""><a href="#tab_content3-{{forloop.counter}}" role="tab" id="profile-tab2-{{forloop.counter}}" data-toggle="tab" aria-expanded="false">User Details</a>
                   </li>
                 </ul>
-                <div id="myTabContent" class="tab-content">
-                  <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab" style="min-height: 60px;">
+                <div id="myTabContent-{{forloop.counter}}" class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade active in" id="tab_content1-{{forloop.counter}}" aria-labelledby="home-tab" style="min-height: 60px;">
                     <p style="font-size: 15px;">{{ obj.description }} </p>
                   </div>
-                  <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content2-{{forloop.counter}}" aria-labelledby="profile-tab">
                     <p>{{ obj.reg_from_loc }}</p>
                   </div>
-                  <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content3-{{forloop.counter}}" aria-labelledby="profile-tab">
                     <p>{{ obj.userid.get_full_name }} </p>
                   </div>
                 </div>

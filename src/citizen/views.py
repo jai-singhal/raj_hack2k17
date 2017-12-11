@@ -8,6 +8,8 @@ from .forms import UsersLoginForm
 from case.forms import *
 from .forms import UsersRegisterForm
 from .models import Citizen
+from police.views import *
+
 
 def login_view(request):
     if  str(request.user.__class__.__name__)=="Citizen":
@@ -76,12 +78,43 @@ def user_case_detail(request,id=None):
         raise Http404
     comments = Comment.objects.filter(case = id)
     my_object = get_object_or_404(Case, id=id)
+    
     wqset=Witness.objects.filter(case=my_object)
-    police_id = request.user.id
-    ward_object = None
-    context={"my_object":my_object,"wqset":wqset, "ward_object": ward_object, "police_id": police_id, "comments": comments}
-    return render(request,'police/case_detail.html',context)
 
+   
+    files = my_object.evidence_set.all()
+    imglist={}
+    vidlist={}
+    audlist={}
+    doculist={}
+    others={}
+    for i in files:
+        
+
+        if is_image(get_last(i.evidence.name)):
+            imglist[get_last(i.evidence.name)]=i.evidence.url
+
+
+        elif is_audio(get_last(i.evidence.name)):
+            audlist[get_last(i.evidence.name)]=i.evidence.url
+        
+        elif is_video(get_last(i.evidence.name)):
+            vidlist[get_last(i.evidence.name)]=i.evidence.url
+        
+        elif is_docu(get_last(i.evidence.name)):
+            doculist[get_last(i.evidence.name)]=i.evidence.url
+
+        else:
+
+            others[get_last(i.evidence.name)]=i.evidence.url
+
+
+        
+    
+
+    print(others)
+    context={"my_object":my_object,"wqset":wqset,  "comments": comments,'files':files,"imglist":imglist,"vidlist":vidlist,"audlist":audlist,"doculist":doculist,"others":others}
+    return render(request,'citizen/case_detail.html',context)
 
 
 
