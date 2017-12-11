@@ -12,7 +12,6 @@ urlpatterns = [
 
 
 	url(r'^ajax/get_category/', get_case_categories, name = "get_categories"),
-	url(r'^person_detail/(?P<id>\d+)/$', person_detail_view, name='person_detail'),
 
 	url(r'^case_detail/(?P<id>\d+)/(?P<approved>\d+)/$', case_detail , name='case_detail'),
 

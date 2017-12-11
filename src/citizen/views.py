@@ -25,6 +25,7 @@ def login_view(request):
 def dashboard(request):
     if not request.user.is_authenticated() :
         raise Http404
+    
     return render(request,'citizen/dashboard.html',{'citizen':request.user})
 
 
@@ -42,14 +43,31 @@ def create_case(request):
     return render(request, "citizen/case.html", {"form": form})
 
 
-def cbcview(request):
+
+
+
+def cbcview(request,sel=None):
     if not request.user.is_authenticated():
         raise Http404
     my_object = get_object_or_404(Citizen, pk=request.user.id)
-    cases_qset=Case.objects.filter(userid=my_object)
-    print(cases_qset)
+    
+    if int(sel)==0:
+        cases_qset=Case.objects.filter(userid=my_object)
+    elif int(sel)==1:
+        cases_qset=Case.objects.filter(userid=my_object,cyber_case_categories=None)
+    elif int(sel)==2:
+        cases_qset=Case.objects.filter(userid=my_object,case_categories=None)
+    elif int(sel)==3:
+        cases_qset=Case.objects.filter(userid=my_object,solved=True)
+    elif int(sel)==4:
+        cases_qset=Case.objects.filter(userid=my_object,approved=False)
+        
+    
+    # print(cases_qset)
+    
     context={"my_object":my_object,"cases_qset":cases_qset}
     return render(request,'citizen/case_by_cat.html',context)
+
 
 from comment.models import Comment
 

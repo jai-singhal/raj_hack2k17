@@ -62,14 +62,15 @@
                     <p style="font-size: 15px;">{{ obj.description }} </p>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                    <p>{{ obj.reg_from_loc }}</p>
-                  </div>
-                  <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                    <p>{{ obj.case_categories }} {{obj.cyber_case_categories}}</p>
+                    <p>{% if obj.case_categories %}{{ obj.case_categories }}{% endif %}
+                    {% if obj.cyber_case_categories %} {{obj.cyber_case_categories}} {% endif%}</p>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                    <p>{{ obj.userid.get_full_name }} </p>
+                    <p>{{ obj.ward_id.id }}</p>
                   </div>
+                  <!-- <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                    <p> </p>
+                  </div> -->
                 </div>
               </div>
           </div>

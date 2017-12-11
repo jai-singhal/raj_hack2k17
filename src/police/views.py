@@ -54,6 +54,7 @@ def dashboard(request):
     if not request.user.is_authenticated() or not str(request.user.__class__.__name__)=="Police":
         raise Http404
 
+
     ward_object=request.user.ward
 
     total_cases_count=Case.objects.all().count()
@@ -294,15 +295,14 @@ def person_detail_view(request,id=None):
     except:
         photo_flag=0
 
-
-
+       
 
     context={
 
         "data":data,
         "d64":d64,
         "detail_flag":detail_flag,
-        "photo_flag":photo_flag
+        "photo_flag":photo_flag,
 
 
     }

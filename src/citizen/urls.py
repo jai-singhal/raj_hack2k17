@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^register$', register_view , name='login'),
     url(r'^dashboard/$', dashboard , name='dashboard'),
     url(r'^create_case/$', create_case , name='create_case'),
-    url(r'^cbcview/$', cbcview , name='cbcview'),
+    url(r'^cbcview/(?P<sel>\d+)/$', cbcview , name='cbcview'),
 	url(r'^user_case_detail/(?P<id>\d+)/$', user_case_detail , name='user_case_detail'),
     url(r'^create_cyber_case/$', create_cyber_case , name='create_cyber_case'),
 

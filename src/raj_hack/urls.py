@@ -8,6 +8,7 @@ from home.views import upload_evidence
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
+from police.views import person_detail_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -20,6 +21,7 @@ urlpatterns = [
     url(r'comment/', CommentPage, name = "comment"),
     url(r'^criminal_directory/', criminal_directory, name = "criminal_directory"),
     url(r'evidence/(?P<id>\d+)/upload', upload_evidence, name = "upload_anonymous_evidence"),
+    url(r'^person_detail/(?P<id>\d+)/$', person_detail_view, name='person_detail'),
 
     url(r'^$', HomePage, name = "HomePage")
 

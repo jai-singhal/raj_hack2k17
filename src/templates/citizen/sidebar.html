@@ -22,26 +22,39 @@
     <div class="menu_section">
       <ul class="nav side-menu">
 
-        <li><a href="/citizen"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a></li>
+        <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
 
 
-        <li><a href="/citizen"><i class="fa fa-home"></i> Report Crime <span class="fa fa-chevron-down"></span></a></li>
-        <li><a><i class="fa fa-desktop"></i> Cyber Crime <span class="fa fa-chevron-down"></span></a>
+        <li><a href="{% url 'create_case' %}"><i class="fa fa-share"></i> Report Civilian Crime <span class=""></span></a></li>
+        <li><a href="{% url 'create_cyber_case' %}"><i class="fa fa-desktop"></i>Report Cyber Crime <span class=""></span></a><!-- 
           <ul class="nav child_menu">
             <li><a href="general_elements.html">Report Crime</a></li>
             <li><a href="media_gallery.html">FAQ</a></li>
+          </ul> -->
+        </li>        <li><a ><i class="fa fa-briefcase"></i> My Cases <span class="fa fa-chevron-down"></span></a>
+
+         <ul class="nav child_menu">
+            <li><a href="{% url 'cbcview' 0 %}">All</a></li>
+          
+            <li><a href="{% url 'cbcview' 1 %}">Civilian Cases</a></li>
+            <li><a href="{% url 'cbcview' 2 %}">Cyber Cases</a></li>
+            <li><a href="{% url 'cbcview' 3 %}">Cases Solved</a></li>
+            <li><a href="{% url 'cbcview' 4 %}">Cases Pending For Approval</a></li>
+          
           </ul>
-        </li>        <li><a href="/citizen/cbcview/"><i class="fa fa-home"></i> My Cases <span class="fa fa-chevron-down"></span></a></li>
 
 
-        <li><a href="{{request.user.get_absolute_url }}"><i class="fa fa-desktop"></i> Profile <span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="general_elements.html">View Profile</a></li>
-            <li><a href="media_gallery.html">Change Password</a></li>
-          </ul>
         </li>
 
-          <li><a href="/citizen/logout"><i class="fa fa-home"></i> Log Out <span class="fa fa-chevron-down"></span></a></li>
+
+        <li><a href="{{request.user.get_absolute_url }}"><i class="fa fa-user"></i> Profile <span class=""></span></a>
+          <!-- <ul class="nav child_menu">
+            <li><a href="general_elements.html">View Profile</a></li>
+            <li><a href="media_gallery.html">Change Password</a></li>
+          </ul> -->
+        </li>
+
+          <li><a href="/citizen/logout"><i class="fa fa-sign-out"></i> Log Out <span class=""></span></a></li>
 
 
       </ul>

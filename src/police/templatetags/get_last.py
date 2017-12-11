@@ -12,3 +12,6 @@ def get_last(value):
 
 
 
+@register.filter
+def to_class_name(value):
+    return value.__class__.__name__
