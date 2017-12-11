@@ -20,14 +20,13 @@ The person with a criminal record could be dangerous to the society. There is a 
 
 <b><h3>Demo Link1(Hasura): <a href="https://app.byzantine29.hasura-app.io/">https://app.byzantine29.hasura-app.io/</a></h3><b>
 <b><h3>Demo Link2(Digital ocean): <a href="http://139.59.14.110">http://139.59.14.110 </a></h3><b>
-<b><h3>Video Link: <a href="https://www.youtube.com/watch?v=bN8u2JbtnsU&feature=youtu.be">https://www.youtube.com/watch?v=bN8u2JbtnsU&feature=youtu.be </a></h3><b> <br>
-
+<b><h3>Video Link: <a href="https://www.youtube.com/watch?v=bN8u2JbtnsU&feature=youtu.be">https://www.youtube.com/watch?v=bN8u2JbtnsU&feature=youtu.be </a></h3><b> 
 <b>
 <hr>
 <!-- <h3>Note for Hasura Hackathon:<h3> We tried to host our project on Hasura Platform but we encountered some problems. One major problem is unable to load the static media files. We contacted you on Slack but still unable to resolve it on time. We are left with no choice but to host our project at another location. Here is the link on which our project is deployed on Hasura - http://app.byzantine29.hasura-app.io/
 <hr>
 </b> -->
-<br>
+
 <b><h2>Tech Stack</h2></b>
 1. Python<br>
 2. Django<br>
