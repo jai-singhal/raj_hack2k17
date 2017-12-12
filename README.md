@@ -18,8 +18,9 @@ Crime Statistics and Analytics provide a detailed and informative view of differ
 Most Wanted Person’s Online Directory:
 The person with a criminal record could be dangerous to the society. There is a need for online directory listing of the criminals on the most wanted list of the police which will maintain a list of records of all the criminals with bounty reward.
 
-<b><h3>Demo Link1(Hasura): <a href="https://app.byzantine29.hasura-app.io/">https://app.byzantine29.hasura-app.io/</a></h3><b>
-<b><h3>Demo Link2(Digital ocean): <a href="http://139.59.14.110">http://139.59.14.110 </a></h3><b>
+<b><h3>Demo Link1(Digital ocean - - everything perfectly hosted): <a href="http://139.59.14.110">http://139.59.14.110 </a></h3><b>
+<b><h3>Demo Link2(Hasura - - having database issues): <a href="https://app.byzantine29.hasura-app.io/">https://app.byzantine29.hasura-app.io/</a></h3><b>
+
 <b><h3>Video Link: <a href="https://www.youtube.com/watch?v=bN8u2JbtnsU&feature=youtu.be">https://www.youtube.com/watch?v=bN8u2JbtnsU&feature=youtu.be </a></h3><b> 
 <b>
 <hr>
