@@ -17,5 +17,5 @@ class Citizen(User):
 
 
     def get_absolute_url(self):
-        return reverse("person_detail",kwargs={"id":self.id})
+        return reverse("person_detail",kwargs={"id":self.bhamashah})
 

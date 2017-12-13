@@ -26,9 +26,16 @@ def login_view(request):
 
 def dashboard(request):
     if not request.user.is_authenticated() :
-        raise Http404
+        return redirect("/citizen")
     
-    return render(request,'citizen/dashboard.html',{'citizen':request.user})
+    total=Case.objects.filter(userid=request.user).count()
+    pending=Case.objects.filter(userid=request.user,approved=False).count()
+    solved=Case.objects.filter(userid=request.user,solved=True).count()
+    inprogress=Case.objects.filter(userid=request.user,approved=True,solved=False).count()
+
+    
+    context={'citizen':request.user,"total":total,"pending":pending,"solved":solved,"inprogress":inprogress}
+    return render(request,'citizen/dashboard.html',context)
 
 
 def citizen_logout(request):
@@ -37,6 +44,8 @@ def citizen_logout(request):
     return redirect("/")
 
 def create_case(request):
+    if not request.user.is_authenticated():
+        return redirect("/citizen")
     form = case_form(request.POST or None)
     if form.is_valid():
         instance=form.save(commit=False)
@@ -48,9 +57,12 @@ def create_case(request):
 
 
 
+
+
+
 def cbcview(request,sel=None):
     if not request.user.is_authenticated():
-        raise Http404
+        return redirect("/citizen")
     my_object = get_object_or_404(Citizen, pk=request.user.id)
     
     if int(sel)==0:
@@ -75,7 +87,7 @@ from comment.models import Comment
 
 def user_case_detail(request,id=None):
     if not request.user.is_authenticated():
-        raise Http404
+        return redirect("/citizen")
     comments = Comment.objects.filter(case = id)
     my_object = get_object_or_404(Case, id=id)
     
@@ -118,12 +130,17 @@ def user_case_detail(request,id=None):
 
 
 
+
 def create_cyber_case(request):
-    form = cyber_case_form(request.POST or None)
+    if not request.user.is_authenticated():
+        return redirect("/citizen")
+    form=cyber_case_form(request.POST or None)
     if form.is_valid():
-        form.save()
+        instance=form.save(commit=False)
+        instance.save()
         return redirect("/citizen/dashboard")
-    return render(request, "/citizen/case.html", {"form": form})
+    return render(request, "citizen/case.html",{"form" : form, 'cyber':True})
+
 
 def register_view(request):
     form = UsersRegisterForm(request.POST or None)
@@ -141,22 +158,4 @@ def register_view(request):
     return render(request, "citizen/register.html",{"form" : form,})
 
 
-
-def create_case(request):
-    form=case_form(request.POST or None)
-    if form.is_valid():
-        instance=form.save(commit=False)
-        instance.save()
-        return redirect("/citizen/dashboard")
-    return render(request, "citizen/case.html",{"form" : form,})
-
-
-
-def create_cyber_case(request):
-    form=cyber_case_form(request.POST or None)
-    if form.is_valid():
-        instance=form.save(commit=False)
-        instance.save()
-        return redirect("/citizen/dashboard")
-    return render(request, "citizen/case.html",{"form" : form, 'cyber':True})
 

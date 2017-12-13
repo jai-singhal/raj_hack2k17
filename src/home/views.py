@@ -13,6 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import random
 import string
 from .models import AnonymousUser, AnonymousTip
+from django.contrib.auth import authenticate, login, logout
 
 
 def gen_uname_pass():
@@ -45,6 +46,8 @@ def upload_evidence(request,id=None):
 
 
 def anonymous_tip(request):
+    if request.user.is_authenticated():
+        logout(request)
     form = AnonymousTipForm(request.POST or None)
     if form.is_valid():
         upload_evidence = form.cleaned_data.get("upload_evidence")
