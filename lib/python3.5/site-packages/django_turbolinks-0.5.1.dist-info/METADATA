@@ -1,0 +1,45 @@
+Metadata-Version: 2.0
+Name: django-turbolinks
+Version: 0.5.1
+Summary: Drop-in turbolinks implementation for Django
+Home-page: https://github.com/dgladkov/django-turbolinks
+Author: Dmitry Gladkov
+Author-email: dmitry.gladkov@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Django (>=1.6)
+
+django-turbolinks |Build Status|
+================================
+
+Drop-in turbolinks implementation for Django
+
+Installation
+------------
+
+``$ pip install django-turbolinks``
+
+Configuration
+-------------
+
+2. Add ``turbolinks.middleware.TurbolinksMiddleware`` after
+   ``django.contrib.sessions.middleware.SessionMiddleware`` to your
+   ``MIDDLEWARE_CLASSES`` setting.
+3. Add ``turbolinks`` to your ``INSTALLED_APPS`` setting.
+4. Run ``./manage.py collectstatic``
+5. Include ``/static/turbolinks/turbolinks.js`` script in your base
+   template.
+
+.. |Build Status| image:: https://travis-ci.org/dgladkov/django-turbolinks.svg?branch=master
+   :target: https://travis-ci.org/dgladkov/django-turbolinks
+
+
