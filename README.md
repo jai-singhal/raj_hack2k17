@@ -1,4 +1,4 @@
-<h1><b>Online Crime Reporting Solution</b></h1>
+<h1><b>Online Crime Reporting System</b></h1>
 
 With the rapid urbanization and development of big cities and towns, the graph of crimes is rising rapidly. This phenomenal rise in offences and crime in cities is a matter of great concern. There are robberies, murders, smuggling, rapes and crimes which one can't think of.
 
